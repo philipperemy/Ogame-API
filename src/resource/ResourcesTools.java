@@ -6,14 +6,14 @@ import resource.ResourcesList.Energy;
 import resource.ResourcesList.RawResource;
 import resource.ResourcesList.Resource;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import connection.Client;
+import connection.ClientFactory;
 
 public class ResourcesTools
 {
 
     public static void update()
     {
-        parse(Client.getFrontPage());
+        parse(ClientFactory.get().getFrontPage());
     }
 
     private static void parse(HtmlPage htmlPage)

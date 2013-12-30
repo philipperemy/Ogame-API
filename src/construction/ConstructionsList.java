@@ -24,28 +24,45 @@ import construction.resourcebuilding.storage.MetalStorage;
 
 public class ConstructionsList
 {
-    public Mine           metalMine       = new MetalMine();
-    public Mine           crystalMine     = new CrystalMine();
-    public Mine           deuteriumMine   = new DeuteriumSynthesizer();
+    private String        planetId;
 
-    public EnergyProducer solarPlant      = new SolarPlant();
-    public EnergyProducer fusionReactor   = new FusionReactor();
-    public EnergyProducer SolarSatellite  = new SolarSatellite();
+    public Mine           metalMineStruct       = new MetalMine();
+    public Mine           crystalMineStruct     = new CrystalMine();
+    public Mine           deuteriumMineStruct   = new DeuteriumSynthesizer();
 
-    public Construction   metalStorage    = new MetalStorage();
-    public Construction   crystalStorage  = new CrystalStorage();
-    public Construction   deuteriumTank   = new DeuteriumTank();
+    public EnergyProducer solarPlantStruct      = new SolarPlant();
+    public EnergyProducer fusionReactorStruct   = new FusionReactor();
+    public EnergyProducer SolarSatelliteStruct  = new SolarSatellite();
 
-    public Construction   metalDen        = new ShieldedMetalDen();
-    public Construction   crystalDen      = new UndergroundCrystalDen();
-    public Construction   deuteriumDen    = new SeabedDeuteriumDen();
+    public Construction   metalStorageStruct    = new MetalStorage();
+    public Construction   crystalStorageStruct  = new CrystalStorage();
+    public Construction   deuteriumTankStruct   = new DeuteriumTank();
 
-    public Construction   allianceDepot   = new AllianceDepot();
-    public Construction   missileSilo     = new MissileSilo();
-    public Construction   naniteFactory   = new NaniteFactory();
-    public Construction   researchLab     = new ResearchLab();
-    public Construction   roboticsFactory = new RoboticsFactory();
-    public Construction   shipyard        = new Shipyard();
-    public Construction   terraformer     = new Terraformer();
+    public Construction   metalDenStruct        = new ShieldedMetalDen();
+    public Construction   crystalDenStruct      = new UndergroundCrystalDen();
+    public Construction   deuteriumDenStruct    = new SeabedDeuteriumDen();
+
+    public Construction   allianceDepotStruct   = new AllianceDepot();
+    public Construction   missileSiloStruct     = new MissileSilo();
+    public Construction   naniteFactoryStruct   = new NaniteFactory();
+    public Construction   researchLabStruct     = new ResearchLab();
+    public Construction   roboticsFactoryStruct = new RoboticsFactory();
+    public Construction   shipyardStruct        = new Shipyard();
+    public Construction   terraformerStruct     = new Terraformer();
+
+    public ConstructionsList(String planetId)
+    {
+        setPlanetId(planetId);
+    }
+
+    public String getPlanetId()
+    {
+        return planetId;
+    }
+
+    public void setPlanetId(String planetId)
+    {
+        this.planetId = planetId;
+    }
 
 }
