@@ -6,6 +6,7 @@ public class RealMain
     public static void main(String[] args)
     {
         Node deathStar = NodeDictionary.DeathStar;
+        RequirementFactory.getOrderedRequiredItems(deathStar).toString();
         String actual = RequirementFactory.getOrderedRequiredItems(deathStar).toString();
         System.out.println(actual);
 

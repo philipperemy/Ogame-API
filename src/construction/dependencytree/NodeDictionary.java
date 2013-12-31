@@ -12,6 +12,11 @@ public class NodeDictionary
     {
         nodes.add(node);
     }
+    
+    public static List<Node> getAll()
+    {
+        return nodes;
+    }
 
     // Poor efficiency but it's all right
     public static Node getNode(String data)

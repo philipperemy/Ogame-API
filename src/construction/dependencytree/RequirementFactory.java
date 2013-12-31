@@ -8,14 +8,25 @@ public class RequirementFactory
 {
     private static Tree tree = loadDependencyTree();
 
+    //Very important for multithreading
     public static synchronized List<Node> getOrderedRequiredItems(Node item)
     {
         List<Node> pendingQueue = new ArrayList<Node>();
-        Tree tree = loadDependencyTree();
 
         while (func(item, pendingQueue));
+
         pendingQueue.add(item);
+        reset();
+
         return pendingQueue;
+    }
+
+    private static void reset()
+    {
+        for (Node node : NodeDictionary.getAll())
+        {
+            node.built = false;
+        }
     }
 
     private static boolean func(Node buildNode, List<Node> pendingQueue)
