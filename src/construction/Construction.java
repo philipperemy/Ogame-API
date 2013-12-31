@@ -17,7 +17,7 @@ public abstract class Construction
 
     protected abstract String getRef();
     
-    protected abstract Node getDependencyNode();
+    //protected abstract Node getDependencyNode();
     
     protected abstract String getDescription();
 

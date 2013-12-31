@@ -121,10 +121,8 @@ public class RequirementFactory
 
         NodeDictionary.ComputerTechnology8.addChild(NodeDictionary.IntergalacticResearchNetwork);
 
-        NodeDictionary.LunarBase.addChild(NodeDictionary.baseLunaire);
-
-        NodeDictionary.baseLunaire.addChild(NodeDictionary.JumpGate);
-        NodeDictionary.baseLunaire.addChild(NodeDictionary.SensorPhalanx);
+        NodeDictionary.LunarBase.addChild(NodeDictionary.JumpGate);
+        NodeDictionary.LunarBase.addChild(NodeDictionary.SensorPhalanx);
 
         NodeDictionary.LaserTechnology1.addChild(NodeDictionary.LaserTechnology2);
 
@@ -151,14 +149,11 @@ public class RequirementFactory
         NodeDictionary.EnergyTechnology2.addChild(NodeDictionary.LaserTechnology1);
 
         NodeDictionary.DeuteriumSynthesizer1.addChild(NodeDictionary.DeuteriumSynthesizer2);
-
         NodeDictionary.DeuteriumSynthesizer2.addChild(NodeDictionary.DeuteriumSynthesizer3);
-
         NodeDictionary.DeuteriumSynthesizer3.addChild(NodeDictionary.DeuteriumSynthesizer4);
-
         NodeDictionary.DeuteriumSynthesizer4.addChild(NodeDictionary.DeuteriumSynthesizer5);
 
-        NodeDictionary.DeuteriumSynthesizer5.addChild(NodeDictionary.fusionReactor);
+        NodeDictionary.DeuteriumSynthesizer5.addChild(NodeDictionary.FusionReactor);
 
         NodeDictionary.Shipyard1.addChild(NodeDictionary.Shipyard2);
 
@@ -170,21 +165,13 @@ public class RequirementFactory
 
         NodeDictionary.EnergyTechnology2.addChild(NodeDictionary.EnergyTechnology3);
         NodeDictionary.EnergyTechnology3.addChild(NodeDictionary.EnergyTechnology4);
-
         NodeDictionary.EnergyTechnology4.addChild(NodeDictionary.EnergyTechnology5);
-
         NodeDictionary.EnergyTechnology5.addChild(NodeDictionary.EnergyTechnology6);
-
         NodeDictionary.EnergyTechnology6.addChild(NodeDictionary.EnergyTechnology7);
-
         NodeDictionary.EnergyTechnology7.addChild(NodeDictionary.EnergyTechnology8);
-
         NodeDictionary.EnergyTechnology8.addChild(NodeDictionary.EnergyTechnology9);
-
         NodeDictionary.EnergyTechnology9.addChild(NodeDictionary.EnergyTechnology10);
-
         NodeDictionary.EnergyTechnology10.addChild(NodeDictionary.EnergyTechnology11);
-
         NodeDictionary.EnergyTechnology11.addChild(NodeDictionary.EnergyTechnology12);
 
         NodeDictionary.EnergyTechnology12.addChild(NodeDictionary.Terraformer);
@@ -212,9 +199,8 @@ public class RequirementFactory
         NodeDictionary.EspionageTechnology2.addChild(NodeDictionary.EspionageTechnology3);
         NodeDictionary.EspionageTechnology3.addChild(NodeDictionary.EspionageTechnology4);
 
-        NodeDictionary.ImpulseDrive3.addChild(NodeDictionary.technologieExpeditions);
-        NodeDictionary.EspionageTechnology4.addChild(NodeDictionary.technologieExpeditions);
-
+        /*NodeDictionary.ImpulseDrive3.addChild(NodeDictionary.technologieExpeditions);
+        NodeDictionary.EspionageTechnology4.addChild(NodeDictionary.technologieExpeditions);*/
 
         NodeDictionary.HyperspaceDrive1.addChild(NodeDictionary.HyperspaceDrive2);
 
@@ -302,10 +288,10 @@ public class RequirementFactory
 
         NodeDictionary.EnergyTechnology8.addChild(NodeDictionary.PlasmaTechnology1);
 
-        NodeDictionary.LaserTechnology12.addChild(NodeDictionary.traquer);
-        NodeDictionary.Shipyard8.addChild(NodeDictionary.traquer);
-        NodeDictionary.HyperspaceTechnology5.addChild(NodeDictionary.traquer);
-        NodeDictionary.HyperspaceDrive5.addChild(NodeDictionary.traquer);
+        NodeDictionary.LaserTechnology12.addChild(NodeDictionary.BattleCruiser);
+        NodeDictionary.Shipyard8.addChild(NodeDictionary.BattleCruiser);
+        NodeDictionary.HyperspaceTechnology5.addChild(NodeDictionary.BattleCruiser);
+        NodeDictionary.HyperspaceDrive5.addChild(NodeDictionary.BattleCruiser);
 
         NodeDictionary.Shipyard7.addChild(NodeDictionary.BattleShip);
         NodeDictionary.HyperspaceDrive4.addChild(NodeDictionary.BattleShip);
@@ -407,14 +393,14 @@ public class RequirementFactory
         NodeDictionary.EnergyTechnology6.addChild(NodeDictionary.GaussCannon);
         NodeDictionary.Shipyard6.addChild(NodeDictionary.GaussCannon);
 
-        NodeDictionary.EnergyTechnology3.addChild(NodeDictionary.fusionReactor);
+        NodeDictionary.EnergyTechnology3.addChild(NodeDictionary.FusionReactor);
 
         NodeDictionary.EnergyTechnology3.addChild(NodeDictionary.HeavyLaser);
         NodeDictionary.LaserTechnology6.addChild(NodeDictionary.HeavyLaser);
         NodeDictionary.Shipyard4.addChild(NodeDictionary.HeavyLaser);
 
         NodeDictionary.Shipyard1.addChild(NodeDictionary.SolarSatellite);
-        NodeDictionary.Shipyard1.addChild(NodeDictionary.rocketLauncher);
+        NodeDictionary.Shipyard1.addChild(NodeDictionary.RocketLauncher);
 
         NodeDictionary.MissileSilo2.addChild(NodeDictionary.AntiBallisticMissiles);
 

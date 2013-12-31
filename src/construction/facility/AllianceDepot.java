@@ -19,10 +19,10 @@ public class AllianceDepot extends Construction
         return "34";
     }
 
-    @Override
+    /*@Override
     protected Node getDependencyNode()
     {
         return NodeDictionary.getNode();
-    }
+    }*/
   
 }
