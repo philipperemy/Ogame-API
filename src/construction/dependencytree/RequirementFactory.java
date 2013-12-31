@@ -6,7 +6,6 @@ import java.util.Set;
 
 public class RequirementFactory
 {
-
     private static Tree tree = loadDependencyTree();
     
     public static synchronized List<Node> getOrderedRequiredItems(Node item)
@@ -39,571 +38,393 @@ public class RequirementFactory
     }
 
     private static Tree loadDependencyTree()
-    {
-        Node ResearchLab1 = new Node("ResearchLab1");
-        Node EnergyTechnology1 = new Node("EnergyTechnology1");
-        Node ResearchLab2 = new Node("ResearchLab2");
-        Node ComputerTechnology1 = new Node("ComputerTechnology1");
+    {        
+        NodeDictionary.ResearchLab1.addChild(NodeDictionary.EnergyTechnology1);
+        NodeDictionary.ResearchLab1.addChild(NodeDictionary.ResearchLab2);
+        NodeDictionary.ResearchLab1.addChild(NodeDictionary.ComputerTechnology1);
 
-        ResearchLab1.addChild(EnergyTechnology1);
-        ResearchLab1.addChild(ResearchLab2);
-        ResearchLab1.addChild(ComputerTechnology1);
+        NodeDictionary.ResearchLab2.addChild(NodeDictionary.ArmourTechnology1);
+        NodeDictionary.ResearchLab2.addChild(NodeDictionary.ImpulseDrive1);
+        NodeDictionary.ResearchLab2.addChild(NodeDictionary.ResearchLab3);
 
-        Node ArmourTechnology1 = new Node("ArmourTechnology1");
-        Node ImpulseDrive1 = new Node("ImpulseDrive1");
-        Node ResearchLab3 = new Node("ResearchLab3");
+        NodeDictionary.ComputerTechnology1.addChild(NodeDictionary.ComputerTechnology2);
 
-        ResearchLab2.addChild(ArmourTechnology1);
-        ResearchLab2.addChild(ImpulseDrive1);
-        ResearchLab2.addChild(ResearchLab3);
+        NodeDictionary.ComputerTechnology2.addChild(NodeDictionary.ComputerTechnology3);
 
-        Node ComputerTechnology2 = new Node("ComputerTechnology2");
-        ComputerTechnology1.addChild(ComputerTechnology2);
+        NodeDictionary.ComputerTechnology3.addChild(NodeDictionary.ComputerTechnology4);
 
-        Node ComputerTechnology3 = new Node("ComputerTechnology3");
-        ComputerTechnology2.addChild(ComputerTechnology3);
+        NodeDictionary.ComputerTechnology4.addChild(NodeDictionary.ComputerTechnology5);
 
-        Node ComputerTechnology4 = new Node("ComputerTechnology4");
-        ComputerTechnology3.addChild(ComputerTechnology4);
+        NodeDictionary.ComputerTechnology5.addChild(NodeDictionary.ComputerTechnology6);
 
-        Node ComputerTechnology5 = new Node("ComputerTechnology5");
-        ComputerTechnology4.addChild(ComputerTechnology5);
+        NodeDictionary.ComputerTechnology6.addChild(NodeDictionary.ComputerTechnology7);
 
-        Node ComputerTechnology6 = new Node("ComputerTechnology6");
-        ComputerTechnology5.addChild(ComputerTechnology6);
+        NodeDictionary.ComputerTechnology7.addChild(NodeDictionary.ComputerTechnology8);
 
-        Node ComputerTechnology7 = new Node("ComputerTechnology7");
-        ComputerTechnology6.addChild(ComputerTechnology7);
+        NodeDictionary.ComputerTechnology8.addChild(NodeDictionary.ComputerTechnology9);
 
-        Node ComputerTechnology8 = new Node("ComputerTechnology8");
-        ComputerTechnology7.addChild(ComputerTechnology8);
+        NodeDictionary.ComputerTechnology9.addChild(NodeDictionary.ComputerTechnology10);
 
-        Node ComputerTechnology9 = new Node("ComputerTechnology9");
-        ComputerTechnology8.addChild(ComputerTechnology9);
+        NodeDictionary.RoboticsFactory1.addChild(NodeDictionary.RoboticsFactory2);
 
-        Node ComputerTechnology10 = new Node("ComputerTechnology10");
-        ComputerTechnology9.addChild(ComputerTechnology10);
+        NodeDictionary.RoboticsFactory2.addChild(NodeDictionary.RoboticsFactory3);
 
-        Node RoboticsFactory1 = new Node("RoboticsFactory1");
+        NodeDictionary.RoboticsFactory3.addChild(NodeDictionary.RoboticsFactory4);
 
-        Node RoboticsFactory2 = new Node("RoboticsFactory2");
-        RoboticsFactory1.addChild(RoboticsFactory2);
+        NodeDictionary.RoboticsFactory4.addChild(NodeDictionary.RoboticsFactory5);
 
-        Node RoboticsFactory3 = new Node("RoboticsFactory3");
-        RoboticsFactory2.addChild(RoboticsFactory3);
+        NodeDictionary.RoboticsFactory5.addChild(NodeDictionary.RoboticsFactory6);
 
-        Node RoboticsFactory4 = new Node("RoboticsFactory4");
-        RoboticsFactory3.addChild(RoboticsFactory4);
+        NodeDictionary.RoboticsFactory6.addChild(NodeDictionary.RoboticsFactory7);
 
-        Node RoboticsFactory5 = new Node("RoboticsFactory5");
-        RoboticsFactory4.addChild(RoboticsFactory5);
+        NodeDictionary.RoboticsFactory7.addChild(NodeDictionary.RoboticsFactory8);
 
-        Node RoboticsFactory6 = new Node("RoboticsFactory6");
-        RoboticsFactory5.addChild(RoboticsFactory6);
+        NodeDictionary.RoboticsFactory8.addChild(NodeDictionary.RoboticsFactory9);
 
-        Node RoboticsFactory7 = new Node("RoboticsFactory7");
-        RoboticsFactory6.addChild(RoboticsFactory7);
+        NodeDictionary.RoboticsFactory9.addChild(NodeDictionary.RoboticsFactory10);
 
-        Node RoboticsFactory8 = new Node("RoboticsFactory8");
-        RoboticsFactory7.addChild(RoboticsFactory8);
+        NodeDictionary.RoboticsFactory2.addChild(NodeDictionary.Shipyard1);
 
-        Node RoboticsFactory9 = new Node("RoboticsFactory9");
-        RoboticsFactory8.addChild(RoboticsFactory9);
+        NodeDictionary.EnergyTechnology1.addChild(NodeDictionary.CombustionDrive1);
 
-        Node RoboticsFactory10 = new Node("RoboticsFactory10");
-        RoboticsFactory9.addChild(RoboticsFactory10);
+        NodeDictionary.EnergyTechnology1.addChild(NodeDictionary.ImpulseDrive1);
+        NodeDictionary.EnergyTechnology1.addChild(NodeDictionary.EnergyTechnology2);
 
-        Node Shipyard1 = new Node("Shipyard1");
-        RoboticsFactory2.addChild(Shipyard1);
+        NodeDictionary.ResearchLab3.addChild(NodeDictionary.ResearchLab4);
 
-        Node CombustionDrive1 = new Node("CombustionDrive1");
-        EnergyTechnology1.addChild(CombustionDrive1);
+        NodeDictionary.ResearchLab4.addChild(NodeDictionary.ResearchLab5);
 
-        Node EnergyTechnology2 = new Node("EnergyTechnology2");
+        NodeDictionary.ResearchLab5.addChild(NodeDictionary.ResearchLab6);
 
-        EnergyTechnology1.addChild(ImpulseDrive1);
-        EnergyTechnology1.addChild(EnergyTechnology2);
+        NodeDictionary.ResearchLab6.addChild(NodeDictionary.ResearchLab7);
 
-        Node ResearchLab4 = new Node("ResearchLab4");
-        ResearchLab3.addChild(ResearchLab4);
+        NodeDictionary.ResearchLab7.addChild(NodeDictionary.ResearchLab8);
 
-        Node ResearchLab5 = new Node("ResearchLab5");
-        ResearchLab4.addChild(ResearchLab5);
+        NodeDictionary.ResearchLab8.addChild(NodeDictionary.ResearchLab9);
 
-        Node ResearchLab6 = new Node("ResearchLab6");
-        ResearchLab5.addChild(ResearchLab6);
+        NodeDictionary.ResearchLab9.addChild(NodeDictionary.ResearchLab10);
 
-        Node ResearchLab7 = new Node("ResearchLab7");
-        ResearchLab6.addChild(ResearchLab7);
+        NodeDictionary.ResearchLab10.addChild(NodeDictionary.ResearchLab11);
 
-        Node ResearchLab8 = new Node("ResearchLab8");
-        ResearchLab7.addChild(ResearchLab8);
+        NodeDictionary.ResearchLab11.addChild(NodeDictionary.ResearchLab12);
 
-        Node ResearchLab9 = new Node("ResearchLab9");
-        ResearchLab8.addChild(ResearchLab9);
+        NodeDictionary.ResearchLab12.addChild(NodeDictionary.GravitonTechnology);
 
-        Node ResearchLab10 = new Node("ResearchLab10");
-        ResearchLab9.addChild(ResearchLab10);
+        NodeDictionary.GravitonTechnology.addChild(NodeDictionary.DeathStar);
 
-        Node ResearchLab11 = new Node("ResearchLab11");
-        ResearchLab10.addChild(ResearchLab11);
+        NodeDictionary.ResearchLab10.addChild(NodeDictionary.IntergalacticResearchNetwork);
 
-        Node ResearchLab12 = new Node("ResearchLab12");
-        ResearchLab11.addChild(ResearchLab12);
+        NodeDictionary.RoboticsFactory10.addChild(NodeDictionary.NaniteFactory1);
+        NodeDictionary.ComputerTechnology10.addChild(NodeDictionary.NaniteFactory1);
 
-        Node GravitonTechnology = new Node("GravitonTechnology");
-        ResearchLab12.addChild(GravitonTechnology);
+        NodeDictionary.NaniteFactory1.addChild(NodeDictionary.Terraformer);
 
-        Node DeathStar = new Node("DeathStar");
-        GravitonTechnology.addChild(DeathStar);
+        NodeDictionary.ComputerTechnology8.addChild(NodeDictionary.IntergalacticResearchNetwork);
 
-        Node IntergalacticResearchNetwork = new Node("IntergalacticResearchNetwork");
-        ResearchLab10.addChild(IntergalacticResearchNetwork);
+        NodeDictionary.LunarBase.addChild(NodeDictionary.baseLunaire);
 
-        Node NaniteFactory1 = new Node("NaniteFactory1");
-        RoboticsFactory10.addChild(NaniteFactory1);
-        ComputerTechnology10.addChild(NaniteFactory1);
+        NodeDictionary.baseLunaire.addChild(NodeDictionary.JumpGate);
+        NodeDictionary.baseLunaire.addChild(NodeDictionary.SensorPhalanx);
 
-        Node Terraformer = new Node("Terraformer");
-        NaniteFactory1.addChild(Terraformer);
+        NodeDictionary.LaserTechnology1.addChild(NodeDictionary.LaserTechnology2);
 
-        ComputerTechnology8.addChild(IntergalacticResearchNetwork);
+        NodeDictionary.LaserTechnology2.addChild(NodeDictionary.LaserTechnology3);
 
-        Node LunarBase = new Node("LunarBase");
-        Node baseLunaire = new Node("baseLunaire");
-        LunarBase.addChild(baseLunaire);
+        NodeDictionary.LaserTechnology3.addChild(NodeDictionary.LaserTechnology4);
 
-        Node JumpGate = new Node("JumpGate");
-        Node SensorPhalanx = new Node("SensorPhalanx");
+        NodeDictionary.LaserTechnology4.addChild(NodeDictionary.LaserTechnology5);
 
-        baseLunaire.addChild(JumpGate);
-        baseLunaire.addChild(SensorPhalanx);
+        NodeDictionary.LaserTechnology5.addChild(NodeDictionary.LaserTechnology6);
 
-        Node LaserTechnology1 = new Node("LaserTechnology1");
+        NodeDictionary.LaserTechnology6.addChild(NodeDictionary.LaserTechnology7);
 
-        Node LaserTechnology2 = new Node("LaserTechnology2");
-        LaserTechnology1.addChild(LaserTechnology2);
+        NodeDictionary.LaserTechnology7.addChild(NodeDictionary.LaserTechnology8);
 
-        Node LaserTechnology3 = new Node("LaserTechnology3");
-        LaserTechnology2.addChild(LaserTechnology3);
+        NodeDictionary.LaserTechnology8.addChild(NodeDictionary.LaserTechnology9);
 
-        Node LaserTechnology4 = new Node("LaserTechnology4");
-        LaserTechnology3.addChild(LaserTechnology4);
+        NodeDictionary.LaserTechnology9.addChild(NodeDictionary.LaserTechnology10);
 
-        Node LaserTechnology5 = new Node("LaserTechnology5");
-        LaserTechnology4.addChild(LaserTechnology5);
+        NodeDictionary.LaserTechnology10.addChild(NodeDictionary.LaserTechnology11);
 
-        Node LaserTechnology6 = new Node("LaserTechnology6");
-        LaserTechnology5.addChild(LaserTechnology6);
+        NodeDictionary.LaserTechnology11.addChild(NodeDictionary.LaserTechnology12);
 
-        Node LaserTechnology7 = new Node("LaserTechnology7");
-        LaserTechnology6.addChild(LaserTechnology7);
+        NodeDictionary.EnergyTechnology2.addChild(NodeDictionary.LaserTechnology1);
 
-        Node LaserTechnology8 = new Node("LaserTechnology8");
-        LaserTechnology7.addChild(LaserTechnology8);
+        NodeDictionary.DeuteriumSynthesizer1.addChild(NodeDictionary.DeuteriumSynthesizer2);
 
-        Node LaserTechnology9 = new Node("LaserTechnology9");
-        LaserTechnology8.addChild(LaserTechnology9);
+        NodeDictionary.DeuteriumSynthesizer2.addChild(NodeDictionary.DeuteriumSynthesizer3);
 
-        Node LaserTechnology10 = new Node("LaserTechnology10");
-        LaserTechnology9.addChild(LaserTechnology10);
+        NodeDictionary.DeuteriumSynthesizer3.addChild(NodeDictionary.DeuteriumSynthesizer4);
 
-        Node LaserTechnology11 = new Node("LaserTechnology11");
-        LaserTechnology10.addChild(LaserTechnology11);
+        NodeDictionary.DeuteriumSynthesizer4.addChild(NodeDictionary.DeuteriumSynthesizer5);
 
-        Node LaserTechnology12 = new Node("LaserTechnology12");
-        LaserTechnology11.addChild(LaserTechnology12);
+        NodeDictionary.DeuteriumSynthesizer5.addChild(NodeDictionary.fusionReactor);
 
-        EnergyTechnology2.addChild(LaserTechnology1);
+        NodeDictionary.Shipyard1.addChild(NodeDictionary.Shipyard2);
 
-        Node DeuteriumSynthesizer1 = new Node("DeuteriumSynthesizer1");
+        NodeDictionary.LaserTechnology3.addChild(NodeDictionary.LightLaser);
+        NodeDictionary.Shipyard2.addChild(NodeDictionary.LightLaser);
 
-        Node DeuteriumSynthesizer2 = new Node("DeuteriumSynthesizer2");
-        DeuteriumSynthesizer1.addChild(DeuteriumSynthesizer2);
+        NodeDictionary.CombustionDrive1.addChild(NodeDictionary.LightFighter);
+        NodeDictionary.Shipyard1.addChild(NodeDictionary.LightFighter);
 
-        Node DeuteriumSynthesizer3 = new Node("DeuteriumSynthesizer3");
-        DeuteriumSynthesizer2.addChild(DeuteriumSynthesizer3);
+        NodeDictionary.EnergyTechnology2.addChild(NodeDictionary.EnergyTechnology3);
+        NodeDictionary.EnergyTechnology3.addChild(NodeDictionary.EnergyTechnology4);
 
-        Node DeuteriumSynthesizer4 = new Node("DeuteriumSynthesizer4");
-        DeuteriumSynthesizer3.addChild(DeuteriumSynthesizer4);
+        NodeDictionary.EnergyTechnology4.addChild(NodeDictionary.EnergyTechnology5);
 
-        Node DeuteriumSynthesizer5 = new Node("DeuteriumSynthesizer5");
-        DeuteriumSynthesizer4.addChild(DeuteriumSynthesizer5);
+        NodeDictionary.EnergyTechnology5.addChild(NodeDictionary.EnergyTechnology6);
 
-        Node fusionReactor = new Node("fusionReactor");
-        DeuteriumSynthesizer5.addChild(fusionReactor);
+        NodeDictionary.EnergyTechnology6.addChild(NodeDictionary.EnergyTechnology7);
 
-        Node Shipyard2 = new Node("Shipyard2");
-        Shipyard1.addChild(Shipyard2);
+        NodeDictionary.EnergyTechnology7.addChild(NodeDictionary.EnergyTechnology8);
 
-        Node LightLaser = new Node("LightLaser");
-        LaserTechnology3.addChild(LightLaser);
-        Shipyard2.addChild(LightLaser);
+        NodeDictionary.EnergyTechnology8.addChild(NodeDictionary.EnergyTechnology9);
 
-        Node LightFighter = new Node("LightFighter");
+        NodeDictionary.EnergyTechnology9.addChild(NodeDictionary.EnergyTechnology10);
 
-        CombustionDrive1.addChild(LightFighter);
-        Shipyard1.addChild(LightFighter);
+        NodeDictionary.EnergyTechnology10.addChild(NodeDictionary.EnergyTechnology11);
 
-        Node EnergyTechnology3 = new Node("EnergyTechnology3");
-        EnergyTechnology2.addChild(EnergyTechnology3);
+        NodeDictionary.EnergyTechnology11.addChild(NodeDictionary.EnergyTechnology12);
 
-        Node EnergyTechnology4 = new Node("EnergyTechnology4");
-        EnergyTechnology3.addChild(EnergyTechnology4);
+        NodeDictionary.EnergyTechnology12.addChild(NodeDictionary.Terraformer);
 
-        Node EnergyTechnology5 = new Node("EnergyTechnology5");
-        EnergyTechnology4.addChild(EnergyTechnology5);
 
-        Node EnergyTechnology6 = new Node("EnergyTechnology6");
-        EnergyTechnology5.addChild(EnergyTechnology6);
+        NodeDictionary.ResearchLab6.addChild(NodeDictionary.ShieldingTechnology1);
+        NodeDictionary.EnergyTechnology3.addChild(NodeDictionary.ShieldingTechnology1);
 
-        Node EnergyTechnology7 = new Node("EnergyTechnology7");
-        EnergyTechnology6.addChild(EnergyTechnology7);
+        NodeDictionary.ShieldingTechnology1.addChild(NodeDictionary.ShieldingTechnology2);
 
-        Node EnergyTechnology8 = new Node("EnergyTechnology8");
-        EnergyTechnology7.addChild(EnergyTechnology8);
+        NodeDictionary.ShieldingTechnology2.addChild(NodeDictionary.ShieldingTechnology3);
 
-        Node EnergyTechnology9 = new Node("EnergyTechnology9");
-        EnergyTechnology8.addChild(EnergyTechnology9);
+        NodeDictionary.ShieldingTechnology3.addChild(NodeDictionary.ShieldingTechnology4);
 
-        Node EnergyTechnology10 = new Node("EnergyTechnology10");
-        EnergyTechnology9.addChild(EnergyTechnology10);
+        NodeDictionary.ShieldingTechnology4.addChild(NodeDictionary.ShieldingTechnology5);
 
-        Node EnergyTechnology11 = new Node("EnergyTechnology11");
-        EnergyTechnology10.addChild(EnergyTechnology11);
+        NodeDictionary.ShieldingTechnology5.addChild(NodeDictionary.ShieldingTechnology6);
 
-        Node EnergyTechnology12 = new Node("EnergyTechnology12");
-        EnergyTechnology11.addChild(EnergyTechnology12);
+        NodeDictionary.ImpulseDrive1.addChild(NodeDictionary.ImpulseDrive2);
 
-        EnergyTechnology12.addChild(Terraformer);
+        NodeDictionary.ImpulseDrive2.addChild(NodeDictionary.ImpulseDrive3);
 
-        Node ShieldingTechnology1 = new Node("ShieldingTechnology1");
+        NodeDictionary.ResearchLab3.addChild(NodeDictionary.EspionageTechnology1);
+        NodeDictionary.EspionageTechnology1.addChild(NodeDictionary.EspionageTechnology2);
+        NodeDictionary.EspionageTechnology2.addChild(NodeDictionary.EspionageTechnology3);
+        NodeDictionary.EspionageTechnology3.addChild(NodeDictionary.EspionageTechnology4);
 
-        ResearchLab6.addChild(ShieldingTechnology1);
-        EnergyTechnology3.addChild(ShieldingTechnology1);
+        NodeDictionary.ImpulseDrive3.addChild(NodeDictionary.technologieExpeditions);
+        NodeDictionary.EspionageTechnology4.addChild(NodeDictionary.technologieExpeditions);
 
-        Node ShieldingTechnology2 = new Node("ShieldingTechnology2");
-        ShieldingTechnology1.addChild(ShieldingTechnology2);
 
-        Node ShieldingTechnology3 = new Node("ShieldingTechnology3");
-        ShieldingTechnology2.addChild(ShieldingTechnology3);
+        NodeDictionary.HyperspaceDrive1.addChild(NodeDictionary.HyperspaceDrive2);
 
-        Node ShieldingTechnology4 = new Node("ShieldingTechnology4");
-        ShieldingTechnology3.addChild(ShieldingTechnology4);
+        NodeDictionary.HyperspaceDrive2.addChild(NodeDictionary.HyperspaceDrive3);
 
-        Node ShieldingTechnology5 = new Node("ShieldingTechnology5");
-        ShieldingTechnology4.addChild(ShieldingTechnology5);
+        NodeDictionary.HyperspaceDrive3.addChild(NodeDictionary.HyperspaceDrive4);
 
-        Node ShieldingTechnology6 = new Node("ShieldingTechnology6");
-        ShieldingTechnology5.addChild(ShieldingTechnology6);
+        NodeDictionary.HyperspaceDrive4.addChild(NodeDictionary.HyperspaceDrive5);
 
-        Node ImpulseDrive2 = new Node("ImpulseDrive2");
-        ImpulseDrive1.addChild(ImpulseDrive2);
+        NodeDictionary.HyperspaceDrive5.addChild(NodeDictionary.HyperspaceDrive6);
 
-        Node ImpulseDrive3 = new Node("ImpulseDrive3");
-        ImpulseDrive2.addChild(ImpulseDrive3);
+        NodeDictionary.HyperspaceDrive6.addChild(NodeDictionary.HyperspaceDrive7);
 
-        Node EspionageTechnology1 = new Node("EspionageTechnology1");
-        ResearchLab3.addChild(EspionageTechnology1);
-        Node EspionageTechnology2 = new Node("EspionageTechnology2");
-        EspionageTechnology1.addChild(EspionageTechnology2);
-        Node EspionageTechnology3 = new Node("EspionageTechnology3");
-        EspionageTechnology2.addChild(EspionageTechnology3);
-        Node EspionageTechnology4 = new Node("EspionageTechnology4");
-        EspionageTechnology3.addChild(EspionageTechnology4);
+        NodeDictionary.HyperspaceDrive7.addChild(NodeDictionary.DeathStar);
 
-        Node technologieExpeditions = new Node("technologieExpeditions");
-        ImpulseDrive3.addChild(technologieExpeditions);
-        EspionageTechnology4.addChild(technologieExpeditions);
 
-        Node HyperspaceDrive1 = new Node("HyperspaceDrive1");
+        NodeDictionary.HyperspaceTechnology1.addChild(NodeDictionary.HyperspaceTechnology2);
 
-        Node HyperspaceDrive2 = new Node("HyperspaceDrive2");
-        HyperspaceDrive1.addChild(HyperspaceDrive2);
+        NodeDictionary.HyperspaceTechnology2.addChild(NodeDictionary.HyperspaceTechnology3);
 
-        Node HyperspaceDrive3 = new Node("HyperspaceDrive3");
-        HyperspaceDrive2.addChild(HyperspaceDrive3);
+        NodeDictionary.HyperspaceTechnology3.addChild(NodeDictionary.HyperspaceTechnology4);
 
-        Node HyperspaceDrive4 = new Node("HyperspaceDrive4");
-        HyperspaceDrive3.addChild(HyperspaceDrive4);
+        NodeDictionary.HyperspaceTechnology4.addChild(NodeDictionary.HyperspaceTechnology5);
 
-        Node HyperspaceDrive5 = new Node("HyperspaceDrive5");
-        HyperspaceDrive4.addChild(HyperspaceDrive5);
+        NodeDictionary.HyperspaceTechnology5.addChild(NodeDictionary.HyperspaceTechnology6);
 
-        Node HyperspaceDrive6 = new Node("HyperspaceDrive6");
-        HyperspaceDrive5.addChild(HyperspaceDrive6);
+        NodeDictionary.HyperspaceTechnology6.addChild(NodeDictionary.HyperspaceTechnology7);
 
-        Node HyperspaceDrive7 = new Node("HyperspaceDrive7");
-        HyperspaceDrive6.addChild(HyperspaceDrive7);
+        NodeDictionary.HyperspaceTechnology7.addChild(NodeDictionary.HyperspaceTechnology8);
 
-        HyperspaceDrive7.addChild(DeathStar);
+        NodeDictionary.HyperspaceTechnology3.addChild(NodeDictionary.HyperspaceDrive1);
 
-        Node HyperspaceTechnology1 = new Node("HyperspaceTechnology1");
+        NodeDictionary.HyperspaceTechnology6.addChild(NodeDictionary.DeathStar);
+        NodeDictionary.HyperspaceTechnology7.addChild(NodeDictionary.JumpGate);
 
-        Node HyperspaceTechnology2 = new Node("HyperspaceTechnology2");
-        HyperspaceTechnology1.addChild(HyperspaceTechnology2);
+        NodeDictionary.HyperspaceTechnology8.addChild(NodeDictionary.IntergalacticResearchNetwork);
 
-        Node HyperspaceTechnology3 = new Node("HyperspaceTechnology3");
-        HyperspaceTechnology2.addChild(HyperspaceTechnology3);
+        NodeDictionary.Shipyard2.addChild(NodeDictionary.Shipyard3);
 
-        Node HyperspaceTechnology4 = new Node("HyperspaceTechnology4");
-        HyperspaceTechnology3.addChild(HyperspaceTechnology4);
+        NodeDictionary.Shipyard3.addChild(NodeDictionary.Shipyard4);
 
-        Node HyperspaceTechnology5 = new Node("HyperspaceTechnology5");
-        HyperspaceTechnology4.addChild(HyperspaceTechnology5);
+        NodeDictionary.Shipyard4.addChild(NodeDictionary.Shipyard5);
 
-        Node HyperspaceTechnology6 = new Node("HyperspaceTechnology6");
-        HyperspaceTechnology5.addChild(HyperspaceTechnology6);
+        NodeDictionary.Shipyard5.addChild(NodeDictionary.Shipyard6);
 
-        Node HyperspaceTechnology7 = new Node("HyperspaceTechnology7");
-        HyperspaceTechnology6.addChild(HyperspaceTechnology7);
+        NodeDictionary.Shipyard6.addChild(NodeDictionary.Shipyard7);
 
-        Node HyperspaceTechnology8 = new Node("HyperspaceTechnology8");
-        HyperspaceTechnology7.addChild(HyperspaceTechnology8);
+                
+        NodeDictionary.Shipyard7.addChild(NodeDictionary.Shipyard8);
 
-        HyperspaceTechnology3.addChild(HyperspaceDrive1);
+        NodeDictionary.Shipyard8.addChild(NodeDictionary.Shipyard9);
 
-        HyperspaceTechnology6.addChild(DeathStar);
-        HyperspaceTechnology7.addChild(JumpGate);
+        NodeDictionary.Shipyard9.addChild(NodeDictionary.Shipyard10);
 
-        HyperspaceTechnology8.addChild(IntergalacticResearchNetwork);
+        NodeDictionary.Shipyard10.addChild(NodeDictionary.Shipyard11);
 
-        Node Shipyard3 = new Node("Shipyard3");
-        Shipyard2.addChild(Shipyard3);
+        NodeDictionary.Shipyard11.addChild(NodeDictionary.Shipyard12);
 
-        Node Shipyard4 = new Node("Shipyard4");
-        Shipyard3.addChild(Shipyard4);
+        NodeDictionary.Shipyard12.addChild(NodeDictionary.DeathStar);
 
-        Node Shipyard5 = new Node("Shipyard5");
-        Shipyard4.addChild(Shipyard5);
 
-        Node Shipyard6 = new Node("Shipyard6");
-        Shipyard5.addChild(Shipyard6);
+        NodeDictionary.IonTechnology1.addChild(NodeDictionary.IonTechnology2);
 
-        Node Shipyard7 = new Node("Shipyard7");
-        Shipyard6.addChild(Shipyard7);
+        NodeDictionary.IonTechnology2.addChild(NodeDictionary.IonTechnology3);
 
-        Node Shipyard8 = new Node("Shipyard8");
-        Shipyard7.addChild(Shipyard8);
+        NodeDictionary.IonTechnology3.addChild(NodeDictionary.IonTechnology4);
 
-        Node Shipyard9 = new Node("Shipyard9");
-        Shipyard8.addChild(Shipyard9);
+        NodeDictionary.IonTechnology4.addChild(NodeDictionary.IonTechnology5);
 
-        Node Shipyard10 = new Node("Shipyard10");
-        Shipyard9.addChild(Shipyard10);
+        NodeDictionary.IonTechnology5.addChild(NodeDictionary.PlasmaTechnology1);
 
-        Node Shipyard11 = new Node("Shipyard11");
-        Shipyard10.addChild(Shipyard11);
+        NodeDictionary.PlasmaTechnology1.addChild(NodeDictionary.PlasmaTechnology2);
 
-        Node Shipyard12 = new Node("Shipyard12");
-        Shipyard11.addChild(Shipyard12);
+        NodeDictionary.PlasmaTechnology2.addChild(NodeDictionary.PlasmaTechnology3);
 
-        Shipyard12.addChild(DeathStar);
+        NodeDictionary.PlasmaTechnology3.addChild(NodeDictionary.PlasmaTechnology4);
 
-        Node IonTechnology1 = new Node("IonTechnology1");
+        NodeDictionary.PlasmaTechnology4.addChild(NodeDictionary.PlasmaTechnology5);
 
-        Node IonTechnology2 = new Node("IonTechnology2");
-        IonTechnology1.addChild(IonTechnology2);
+        NodeDictionary.PlasmaTechnology5.addChild(NodeDictionary.PlasmaTechnology6);
 
-        Node IonTechnology3 = new Node("IonTechnology3");
-        IonTechnology2.addChild(IonTechnology3);
+        NodeDictionary.PlasmaTechnology6.addChild(NodeDictionary.PlasmaTechnology7);
 
-        Node IonTechnology4 = new Node("IonTechnology4");
-        IonTechnology3.addChild(IonTechnology4);
+        NodeDictionary.LaserTechnology10.addChild(NodeDictionary.PlasmaTechnology1);
 
-        Node IonTechnology5 = new Node("IonTechnology5");
-        IonTechnology4.addChild(IonTechnology5);
+        NodeDictionary.EnergyTechnology8.addChild(NodeDictionary.PlasmaTechnology1);
 
-        Node PlasmaTechnology1 = new Node("PlasmaTechnology1");
-        IonTechnology5.addChild(PlasmaTechnology1);
+        NodeDictionary.LaserTechnology12.addChild(NodeDictionary.traquer);
+        NodeDictionary.Shipyard8.addChild(NodeDictionary.traquer);
+        NodeDictionary.HyperspaceTechnology5.addChild(NodeDictionary.traquer);
+        NodeDictionary.HyperspaceDrive5.addChild(NodeDictionary.traquer);
 
-        Node PlasmaTechnology2 = new Node("PlasmaTechnology2");
-        PlasmaTechnology1.addChild(PlasmaTechnology2);
+        NodeDictionary.Shipyard7.addChild(NodeDictionary.BattleShip);
+        NodeDictionary.HyperspaceDrive4.addChild(NodeDictionary.BattleShip);
 
-        Node PlasmaTechnology3 = new Node("PlasmaTechnology3");
-        PlasmaTechnology2.addChild(PlasmaTechnology3);
+        NodeDictionary.Shipyard9.addChild(NodeDictionary.Destroyer);
+        NodeDictionary.HyperspaceTechnology5.addChild(NodeDictionary.Destroyer);
+        NodeDictionary.HyperspaceDrive6.addChild(NodeDictionary.Destroyer);
 
-        Node PlasmaTechnology4 = new Node("PlasmaTechnology4");
-        PlasmaTechnology3.addChild(PlasmaTechnology4);
+        NodeDictionary.ShieldingTechnology6.addChild(NodeDictionary.LargeShieldDome);
+        NodeDictionary.Shipyard6.addChild(NodeDictionary.LargeShieldDome);
 
-        Node PlasmaTechnology5 = new Node("PlasmaTechnology5");
-        PlasmaTechnology4.addChild(PlasmaTechnology5);
+        NodeDictionary.PlasmaTechnology7.addChild(NodeDictionary.PlasmaTurret);
+        NodeDictionary.Shipyard8.addChild(NodeDictionary.PlasmaTurret);
 
-        Node PlasmaTechnology6 = new Node("PlasmaTechnology6");
-        PlasmaTechnology5.addChild(PlasmaTechnology6);
+        NodeDictionary.PlasmaTechnology5.addChild(NodeDictionary.Bomber);
+        NodeDictionary.Shipyard8.addChild(NodeDictionary.Bomber);
 
-        Node PlasmaTechnology7 = new Node("PlasmaTechnology7");
-        PlasmaTechnology6.addChild(PlasmaTechnology7);
+        NodeDictionary.ImpulseDrive3.addChild(NodeDictionary.ImpulseDrive4);
 
-        LaserTechnology10.addChild(PlasmaTechnology1);
+        NodeDictionary.ImpulseDrive4.addChild(NodeDictionary.ImpulseDrive5);
 
-        EnergyTechnology8.addChild(PlasmaTechnology1);
+        NodeDictionary.ImpulseDrive5.addChild(NodeDictionary.ImpulseDrive6);
 
-        Node traquer = new Node("traquer");
+        NodeDictionary.ImpulseDrive6.addChild(NodeDictionary.Bomber);
 
-        LaserTechnology12.addChild(traquer);
-        Shipyard8.addChild(traquer);
-        HyperspaceTechnology5.addChild(traquer);
-        HyperspaceDrive5.addChild(traquer);
+        NodeDictionary.IonTechnology4.addChild(NodeDictionary.IonCannon);
+        NodeDictionary.Shipyard4.addChild(NodeDictionary.IonCannon);
 
-        Node BattleShip = new Node("BattleShip");
-        Shipyard7.addChild(BattleShip);
-        HyperspaceDrive4.addChild(BattleShip);
+        NodeDictionary.IonTechnology2.addChild(NodeDictionary.Cruiser);
+        NodeDictionary.ImpulseDrive4.addChild(NodeDictionary.Cruiser);
+        NodeDictionary.Shipyard5.addChild(NodeDictionary.Cruiser);
 
-        Node Destroyer = new Node("Destroyer");
-        Shipyard9.addChild(Destroyer);
-        HyperspaceTechnology5.addChild(Destroyer);
-        HyperspaceDrive6.addChild(Destroyer);
+        NodeDictionary.ShieldingTechnology5.addChild(NodeDictionary.HyperspaceTechnology1);
+        NodeDictionary.ResearchLab7.addChild(NodeDictionary.HyperspaceTechnology1);
 
-        Node LargeShieldDome = new Node("LargeShieldDome");
-        ShieldingTechnology6.addChild(LargeShieldDome);
-        Shipyard6.addChild(LargeShieldDome);
+        NodeDictionary.WeaponsTechnology1.addChild(NodeDictionary.WeaponsTechnology2);
 
-        Node PlasmaTurret = new Node("PlasmaTurret");
-        PlasmaTechnology7.addChild(PlasmaTurret);
-        Shipyard8.addChild(PlasmaTurret);
+        NodeDictionary.WeaponsTechnology2.addChild(NodeDictionary.WeaponsTechnology3);
 
-        Node Bomber = new Node("Bomber");
-        PlasmaTechnology5.addChild(Bomber);
-        Shipyard8.addChild(Bomber);
+        NodeDictionary.ResearchLab4.addChild(NodeDictionary.WeaponsTechnology1);
 
-        Node ImpulseDrive4 = new Node("ImpulseDrive4");
-        ImpulseDrive3.addChild(ImpulseDrive4);
+        NodeDictionary.WeaponsTechnology3.addChild(NodeDictionary.GaussCannon);
+        NodeDictionary.ShieldingTechnology1.addChild(NodeDictionary.GaussCannon);
 
-        Node ImpulseDrive5 = new Node("ImpulseDrive5");
-        ImpulseDrive4.addChild(ImpulseDrive5);
+        NodeDictionary.EnergyTechnology5.addChild(NodeDictionary.HyperspaceTechnology1);
 
-        Node ImpulseDrive6 = new Node("ImpulseDrive6");
-        ImpulseDrive5.addChild(ImpulseDrive6);
+        NodeDictionary.ArmourTechnology1.addChild(NodeDictionary.ArmourTechnology2);
 
-        ImpulseDrive6.addChild(Bomber);
+        NodeDictionary.ArmourTechnology2.addChild(NodeDictionary.HeavyFighter);
+        NodeDictionary.ImpulseDrive2.addChild(NodeDictionary.HeavyFighter);
+        NodeDictionary.Shipyard3.addChild(NodeDictionary.HeavyFighter);
 
-        Node IonCannon = new Node("IonCannon");
-        IonTechnology4.addChild(IonCannon);
-        Shipyard4.addChild(IonCannon);
+        NodeDictionary.ImpulseDrive1.addChild(NodeDictionary.InterplanetaryMissiles);
 
-        Node Cruiser = new Node("Cruiser");
-        IonTechnology2.addChild(Cruiser);
-        ImpulseDrive4.addChild(Cruiser);
-        Shipyard5.addChild(Cruiser);
+        NodeDictionary.Shipyard1.addChild(NodeDictionary.SmallShieldDome);
+        NodeDictionary.ShieldingTechnology2.addChild(NodeDictionary.SmallShieldDome);
 
-        ShieldingTechnology5.addChild(HyperspaceTechnology1);
-        ResearchLab7.addChild(HyperspaceTechnology1);
+        NodeDictionary.MissileSilo1.addChild(NodeDictionary.MissileSilo2);
 
-        Node WeaponsTechnology1 = new Node("WeaponsTechnology1");
+        NodeDictionary.MissileSilo2.addChild(NodeDictionary.MissileSilo3);
 
-        Node WeaponsTechnology2 = new Node("WeaponsTechnology2");
-        WeaponsTechnology1.addChild(WeaponsTechnology2);
+        NodeDictionary.MissileSilo3.addChild(NodeDictionary.MissileSilo4);
 
-        Node WeaponsTechnology3 = new Node("WeaponsTechnology3");
-        WeaponsTechnology2.addChild(WeaponsTechnology3);
+        NodeDictionary.MissileSilo4.addChild(NodeDictionary.InterplanetaryMissiles);
+        NodeDictionary.Shipyard1.addChild(NodeDictionary.MissileSilo1);
 
-        ResearchLab4.addChild(WeaponsTechnology1);
+        NodeDictionary.ShieldingTechnology2.addChild(NodeDictionary.Recycler);
 
-        Node GaussCannon = new Node("GaussCannon");
-        WeaponsTechnology3.addChild(GaussCannon);
-        ShieldingTechnology1.addChild(GaussCannon);
+        NodeDictionary.ImpulseDrive3.addChild(NodeDictionary.ColonyShip);
+        NodeDictionary.Shipyard4.addChild(NodeDictionary.ColonyShip);
 
-        EnergyTechnology5.addChild(HyperspaceTechnology1);
+        NodeDictionary.Shipyard4.addChild(NodeDictionary.LargeCargoShip);
+        NodeDictionary.Shipyard4.addChild(NodeDictionary.Recycler);
 
-        Node ArmourTechnology2 = new Node("ArmourTechnology2");
-        ArmourTechnology1.addChild(ArmourTechnology2);
+        NodeDictionary.CombustionDrive1.addChild(NodeDictionary.CombustionDrive2);
 
-        Node HeavyFighter = new Node("HeavyFighter");
-        ArmourTechnology2.addChild(HeavyFighter);
-        ImpulseDrive2.addChild(HeavyFighter);
-        Shipyard3.addChild(HeavyFighter);
+        NodeDictionary.CombustionDrive2.addChild(NodeDictionary.CombustionDrive3);
 
-        Node InterplanetaryMissiles = new Node("InterplanetaryMissiles");
-        ImpulseDrive1.addChild(InterplanetaryMissiles);
+        NodeDictionary.CombustionDrive3.addChild(NodeDictionary.CombustionDrive4);
 
-        Node SmallShieldDome = new Node("SmallShieldDome");
-        Shipyard1.addChild(SmallShieldDome);
-        ShieldingTechnology2.addChild(SmallShieldDome);
+        NodeDictionary.CombustionDrive4.addChild(NodeDictionary.CombustionDrive5);
 
-        Node MissileSilo1 = new Node("MissileSilo1");
+        NodeDictionary.CombustionDrive5.addChild(NodeDictionary.CombustionDrive6);
 
-        Node MissileSilo2 = new Node("MissileSilo2");
-        MissileSilo1.addChild(MissileSilo2);
+        NodeDictionary.CombustionDrive6.addChild(NodeDictionary.Recycler);
+        NodeDictionary.CombustionDrive6.addChild(NodeDictionary.LargeCargoShip);
 
-        Node MissileSilo3 = new Node("MissileSilo3");
-        MissileSilo2.addChild(MissileSilo3);
+        NodeDictionary.Shipyard2.addChild(NodeDictionary.SmallCargoShip);
+        NodeDictionary.CombustionDrive2.addChild(NodeDictionary.SmallCargoShip);
 
-        Node MissileSilo4 = new Node("MissileSilo4");
-        MissileSilo3.addChild(MissileSilo4);
+        NodeDictionary.CombustionDrive3.addChild(NodeDictionary.EspionageProbe);
+        NodeDictionary.Shipyard3.addChild(NodeDictionary.EspionageProbe);
+        NodeDictionary.EspionageTechnology2.addChild(NodeDictionary.EspionageProbe);
 
-        MissileSilo4.addChild(InterplanetaryMissiles);
-        Shipyard1.addChild(MissileSilo1);
+        NodeDictionary.LaserTechnology5.addChild(NodeDictionary.IonTechnology1);
+        NodeDictionary.ResearchLab4.addChild(NodeDictionary.IonTechnology1);
+        NodeDictionary.EnergyTechnology4.addChild(NodeDictionary.IonTechnology1);
 
-        Node Recycler = new Node("Recycler");
-        ShieldingTechnology2.addChild(Recycler);
+        NodeDictionary.EnergyTechnology6.addChild(NodeDictionary.GaussCannon);
+        NodeDictionary.Shipyard6.addChild(NodeDictionary.GaussCannon);
 
-        Node ColonyShip = new Node("ColonyShip");
-        ImpulseDrive3.addChild(ColonyShip);
-        Shipyard4.addChild(ColonyShip);
+        NodeDictionary.EnergyTechnology3.addChild(NodeDictionary.fusionReactor);
 
-        Node LargeCargoShip = new Node("LargeCargoShip");
-        Shipyard4.addChild(LargeCargoShip);
-        Shipyard4.addChild(Recycler);
+        NodeDictionary.EnergyTechnology3.addChild(NodeDictionary.HeavyLaser);
+        NodeDictionary.LaserTechnology6.addChild(NodeDictionary.HeavyLaser);
+        NodeDictionary.Shipyard4.addChild(NodeDictionary.HeavyLaser);
 
-        Node CombustionDrive2 = new Node("CombustionDrive2");
-        CombustionDrive1.addChild(CombustionDrive2);
+        NodeDictionary.Shipyard1.addChild(NodeDictionary.SolarSatellite);
+        NodeDictionary.Shipyard1.addChild(NodeDictionary.rocketLauncher);
 
-        Node CombustionDrive3 = new Node("CombustionDrive3");
-        CombustionDrive2.addChild(CombustionDrive3);
+        NodeDictionary.MissileSilo2.addChild(NodeDictionary.AntiBallisticMissiles);
 
-        Node CombustionDrive4 = new Node("CombustionDrive4");
-        CombustionDrive3.addChild(CombustionDrive4);
-
-        Node CombustionDrive5 = new Node("CombustionDrive5");
-        CombustionDrive4.addChild(CombustionDrive5);
-
-        Node CombustionDrive6 = new Node("CombustionDrive6");
-        CombustionDrive5.addChild(CombustionDrive6);
-
-        CombustionDrive6.addChild(Recycler);
-        CombustionDrive6.addChild(LargeCargoShip);
-
-        Node SmallCargoShip = new Node("SmallCargoShip");
-        Shipyard2.addChild(SmallCargoShip);
-        CombustionDrive2.addChild(SmallCargoShip);
-
-        Node EspionageProbe = new Node("EspionageProbe");
-        CombustionDrive3.addChild(EspionageProbe);
-        Shipyard3.addChild(EspionageProbe);
-        EspionageTechnology2.addChild(EspionageProbe);
-
-        LaserTechnology5.addChild(IonTechnology1);
-        ResearchLab4.addChild(IonTechnology1);
-        EnergyTechnology4.addChild(IonTechnology1);
-
-        EnergyTechnology6.addChild(GaussCannon);
-        Shipyard6.addChild(GaussCannon);
-
-        EnergyTechnology3.addChild(fusionReactor);
-
-        Node HeavyLaser = new Node("HeavyLaser");
-        EnergyTechnology3.addChild(HeavyLaser);
-        LaserTechnology6.addChild(HeavyLaser);
-        Shipyard4.addChild(HeavyLaser);
-
-        Node SolarSatellite = new Node("SolarSatellite");
-        Node rocketLauncher = new Node("rocketLauncher");
-        Shipyard1.addChild(SolarSatellite);
-        Shipyard1.addChild(rocketLauncher);
-
-        Node AntiBallisticMissiles = new Node("AntiBallisticMissiles");
-
-        MissileSilo2.addChild(AntiBallisticMissiles);
-
-        Node rootNode = new Node("RootNode");
-        rootNode.addChild(ResearchLab1);
-        rootNode.addChild(DeuteriumSynthesizer1);
-        rootNode.addChild(RoboticsFactory1);
-        rootNode.addChild(LunarBase);
+        NodeDictionary.rootNode.addChild(NodeDictionary.ResearchLab1);
+        NodeDictionary.rootNode.addChild(NodeDictionary.DeuteriumSynthesizer1);
+        NodeDictionary.rootNode.addChild(NodeDictionary.RoboticsFactory1);
+        NodeDictionary.rootNode.addChild(NodeDictionary.LunarBase);
         
         Tree tree = new Tree();
-        tree.root = rootNode;
+        tree.root = NodeDictionary.rootNode;
         return tree;
     }
 

@@ -1,6 +1,8 @@
 package construction.facility;
 
 import construction.Construction;
+import construction.dependencytree.Node;
+import construction.dependencytree.NodeDictionary;
 
 public class MissileSilo extends Construction
 {
@@ -15,5 +17,11 @@ public class MissileSilo extends Construction
     protected String getRef()
     {
         return "44";
+    }
+
+    @Override
+    protected Node getDependencyNode()
+    {
+        return NodeDictionary.getNode(data)
     }
 }

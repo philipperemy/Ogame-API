@@ -1,10 +1,12 @@
 package construction.facility;
 
 import construction.Construction;
+import construction.dependencytree.Node;
+import construction.dependencytree.NodeDictionary;
 
 public class AllianceDepot extends Construction
 {
-
+    
     @Override
     protected String getDescription()
     {
@@ -16,4 +18,11 @@ public class AllianceDepot extends Construction
     {
         return "34";
     }
+
+    @Override
+    protected Node getDependencyNode()
+    {
+        return NodeDictionary.getNode();
+    }
+  
 }

@@ -1,6 +1,7 @@
 package construction;
 
 import java.math.BigInteger;
+import construction.dependencytree.Node;
 import tool.Duration;
 
 public abstract class Construction
@@ -15,6 +16,8 @@ public abstract class Construction
     private Construction nextConstruction;
 
     protected abstract String getRef();
+    
+    protected abstract Node getDependencyNode();
     
     protected abstract String getDescription();
 

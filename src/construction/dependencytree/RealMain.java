@@ -6,8 +6,8 @@ public class RealMain
 
     public static void main(String[] args)
     {
-        Node DeathStar = new Node("DeathStar");
-        System.out.println(RequirementFactory.getOrderedRequiredItems(DeathStar));
+        Node deathStar = NodeDictionary.DeathStar;
+        System.out.println(RequirementFactory.getOrderedRequiredItems(deathStar));
     }
 
 }

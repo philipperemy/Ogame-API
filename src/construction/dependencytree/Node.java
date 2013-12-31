@@ -57,9 +57,11 @@ public class Node
 
     public Node(String data)
     {
+        NodeDictionary.addNode(this);
         this.data = data;
     }
 
+    //get rid of built
     public Node(String data, boolean built)
     {
         this(data);
