@@ -1,5 +1,6 @@
 package construction.resourcebuilding.producer;
 
+
 public class SolarPlant extends EnergyProducer
 {
 

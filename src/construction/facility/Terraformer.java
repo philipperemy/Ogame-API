@@ -1,6 +1,9 @@
 package construction.facility;
 
 import construction.Construction;
+import construction.NamingFactory;
+import construction.dependencytree.Node;
+import construction.dependencytree.NodeDictionary;
 
 public class Terraformer extends Construction
 {
@@ -15,5 +18,11 @@ public class Terraformer extends Construction
     protected String getRef()
     {
         return "33";
+    }
+
+    @Override
+    protected Node getDependencyNode()
+    {
+        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.Terraformer, getLevel()));
     }
 }

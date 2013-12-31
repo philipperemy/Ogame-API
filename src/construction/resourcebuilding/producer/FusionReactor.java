@@ -1,5 +1,9 @@
 package construction.resourcebuilding.producer;
 
+import construction.NamingFactory;
+import construction.dependencytree.Node;
+import construction.dependencytree.NodeDictionary;
+
 public class FusionReactor extends EnergyProducer
 {
 
@@ -13,6 +17,12 @@ public class FusionReactor extends EnergyProducer
     protected String getRef()
     {
         return "12";
+    }
+
+    @Override
+    protected Node getDependencyNode()
+    {
+        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.FusionReactor, getLevel()));
     }
 
 }

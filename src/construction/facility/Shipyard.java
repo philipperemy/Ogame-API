@@ -1,6 +1,9 @@
 package construction.facility;
 
 import construction.Construction;
+import construction.NamingFactory;
+import construction.dependencytree.Node;
+import construction.dependencytree.NodeDictionary;
 
 public class Shipyard extends Construction
 {
@@ -15,5 +18,11 @@ public class Shipyard extends Construction
     protected String getRef()
     {
         return "21";
+    }
+
+    @Override
+    protected Node getDependencyNode()
+    {
+        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.Shipyard, getLevel()));
     }
 }

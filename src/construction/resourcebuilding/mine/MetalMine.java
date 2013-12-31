@@ -2,7 +2,6 @@ package construction.resourcebuilding.mine;
 
 public class MetalMine extends Mine
 {
-
     @Override
     protected String getDescription()
     {

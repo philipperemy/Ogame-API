@@ -1,6 +1,7 @@
 package construction.facility;
 
 import construction.Construction;
+import construction.NamingFactory;
 import construction.dependencytree.Node;
 import construction.dependencytree.NodeDictionary;
 
@@ -19,9 +20,9 @@ public class MissileSilo extends Construction
         return "44";
     }
 
-    /*@Override
+    @Override
     protected Node getDependencyNode()
     {
-        return NodeDictionary.getNode(data)
-    }*/
+        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.MissileSilo, getLevel()));
+    }
 }

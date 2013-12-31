@@ -1,6 +1,9 @@
 package construction.facility;
 
 import construction.Construction;
+import construction.NamingFactory;
+import construction.dependencytree.Node;
+import construction.dependencytree.NodeDictionary;
 
 public class NaniteFactory extends Construction
 {
@@ -15,5 +18,11 @@ public class NaniteFactory extends Construction
     protected String getRef()
     {
         return "15";
+    }
+
+    @Override
+    protected Node getDependencyNode()
+    {
+        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.NaniteFactory, getLevel()));
     }
 }

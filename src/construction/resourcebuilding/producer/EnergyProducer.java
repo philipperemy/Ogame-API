@@ -16,4 +16,5 @@ public abstract class EnergyProducer extends Construction
     {
         this.production = production;
     }
+
 }

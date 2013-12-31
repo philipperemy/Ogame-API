@@ -15,4 +15,5 @@ public class ShieldedMetalDen extends Construction
     {
         return "25";
     }
+
 }

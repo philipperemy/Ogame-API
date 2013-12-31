@@ -1,5 +1,9 @@
 package construction.resourcebuilding.producer;
 
+import construction.NamingFactory;
+import construction.dependencytree.Node;
+import construction.dependencytree.NodeDictionary;
+
 public class SolarSatellite extends EnergyProducer
 {
 
@@ -13,6 +17,12 @@ public class SolarSatellite extends EnergyProducer
     protected String getRef()
     {
         return "212";
+    }
+
+    @Override
+    protected Node getDependencyNode()
+    {
+        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.SolarSatellite, getLevel()));
     }
 
 }

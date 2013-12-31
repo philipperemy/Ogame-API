@@ -11,7 +11,7 @@ public class Logger
     {
         System.out.println(new Date() + " [" + infoKey + "] " + msg);
     }
-    
+
     public static void traceINFO(int level, long[] array)
     {
         StringBuilder sBuilder = new StringBuilder();

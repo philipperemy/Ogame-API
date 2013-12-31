@@ -2,6 +2,12 @@ package construction;
 
 public class NamingFactory
 {
+
+    public static String merge(String name, int level)
+    {
+        return name + String.valueOf(level);
+    }
+
     public static final String ResearchLab                  = "ResearchLab";
     public static final String EnergyTechnology             = "EnergyTechnology";
     public static final String ComputerTechnology           = "ComputerTechnology";
@@ -53,4 +59,5 @@ public class NamingFactory
     public static final String RootNode                     = "RootNode";
     public static final String LightFighter                 = "LightFighter";
     public static final String BattleCruiser                = "BattleCruiser";
+
 }

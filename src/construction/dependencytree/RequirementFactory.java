@@ -7,16 +7,17 @@ import java.util.Set;
 public class RequirementFactory
 {
     private static Tree tree = loadDependencyTree();
-    
+
     public static synchronized List<Node> getOrderedRequiredItems(Node item)
     {
         List<Node> pendingQueue = new ArrayList<Node>();
+        Tree tree = loadDependencyTree();
 
         while (func(item, pendingQueue));
         pendingQueue.add(item);
         return pendingQueue;
     }
-    
+
     private static boolean func(Node buildNode, List<Node> pendingQueue)
     {
         TreeTool treeTool = new TreeTool();
@@ -38,7 +39,7 @@ public class RequirementFactory
     }
 
     private static Tree loadDependencyTree()
-    {        
+    {
         NodeDictionary.ResearchLab1.addChild(NodeDictionary.EnergyTechnology1);
         NodeDictionary.ResearchLab1.addChild(NodeDictionary.ResearchLab2);
         NodeDictionary.ResearchLab1.addChild(NodeDictionary.ComputerTechnology1);
@@ -176,7 +177,6 @@ public class RequirementFactory
 
         NodeDictionary.EnergyTechnology12.addChild(NodeDictionary.Terraformer);
 
-
         NodeDictionary.ResearchLab6.addChild(NodeDictionary.ShieldingTechnology1);
         NodeDictionary.EnergyTechnology3.addChild(NodeDictionary.ShieldingTechnology1);
 
@@ -199,8 +199,10 @@ public class RequirementFactory
         NodeDictionary.EspionageTechnology2.addChild(NodeDictionary.EspionageTechnology3);
         NodeDictionary.EspionageTechnology3.addChild(NodeDictionary.EspionageTechnology4);
 
-        /*NodeDictionary.ImpulseDrive3.addChild(NodeDictionary.technologieExpeditions);
-        NodeDictionary.EspionageTechnology4.addChild(NodeDictionary.technologieExpeditions);*/
+        /*
+         * NodeDictionary.ImpulseDrive3.addChild(NodeDictionary.technologieExpeditions);
+         * NodeDictionary.EspionageTechnology4.addChild(NodeDictionary.technologieExpeditions);
+         */
 
         NodeDictionary.HyperspaceDrive1.addChild(NodeDictionary.HyperspaceDrive2);
 
@@ -215,7 +217,6 @@ public class RequirementFactory
         NodeDictionary.HyperspaceDrive6.addChild(NodeDictionary.HyperspaceDrive7);
 
         NodeDictionary.HyperspaceDrive7.addChild(NodeDictionary.DeathStar);
-
 
         NodeDictionary.HyperspaceTechnology1.addChild(NodeDictionary.HyperspaceTechnology2);
 
@@ -248,7 +249,6 @@ public class RequirementFactory
 
         NodeDictionary.Shipyard6.addChild(NodeDictionary.Shipyard7);
 
-                
         NodeDictionary.Shipyard7.addChild(NodeDictionary.Shipyard8);
 
         NodeDictionary.Shipyard8.addChild(NodeDictionary.Shipyard9);
@@ -260,7 +260,6 @@ public class RequirementFactory
         NodeDictionary.Shipyard11.addChild(NodeDictionary.Shipyard12);
 
         NodeDictionary.Shipyard12.addChild(NodeDictionary.DeathStar);
-
 
         NodeDictionary.IonTechnology1.addChild(NodeDictionary.IonTechnology2);
 
@@ -408,12 +407,10 @@ public class RequirementFactory
         NodeDictionary.rootNode.addChild(NodeDictionary.DeuteriumSynthesizer1);
         NodeDictionary.rootNode.addChild(NodeDictionary.RoboticsFactory1);
         NodeDictionary.rootNode.addChild(NodeDictionary.LunarBase);
-        
+
         Tree tree = new Tree();
         tree.root = NodeDictionary.rootNode;
         return tree;
     }
 
-    
-    
 }

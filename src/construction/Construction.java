@@ -1,24 +1,29 @@
 package construction;
 
 import java.math.BigInteger;
-import construction.dependencytree.Node;
 import tool.Duration;
+import construction.dependencytree.Node;
+import construction.dependencytree.NodeDictionary;
 
 public abstract class Construction
 {
     private Duration     duration;
     private int          level;
-    
+
     private BigInteger   metalRequired     = BigInteger.ZERO;
     private BigInteger   crystalRequired   = BigInteger.ZERO;
     private BigInteger   deuteriumRequired = BigInteger.ZERO;
-    
+
     private Construction nextConstruction;
 
     protected abstract String getRef();
-    
-    //protected abstract Node getDependencyNode();
-    
+
+    //Default behavior. Must be override if necessary
+    protected Node getDependencyNode()
+    {
+        return NodeDictionary.getNode();
+    }
+
     protected abstract String getDescription();
 
     public Duration getDuration()
