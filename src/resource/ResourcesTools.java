@@ -35,11 +35,11 @@ public class ResourcesTools
 
             if (resource instanceof RawResource)
             {
-                available = parseResource(content, "Available", "<span class=\\\"\\\">", "<\\/span>", techId);
+                available = parseResource(content, "Available", "<span class=\\\"middlemark\\\">", "<\\/span>", techId);
             }
             else if (resource instanceof Energy)
             {
-                available = parseResource(content, "Available", "<span class=\\\"overmark\\\">", "<\\/span>", techId);
+                available = parseResource(content, "Available", "<span class=\\\"\\\">", "<\\/span>", techId);
             }
             else
             {
@@ -53,7 +53,7 @@ public class ResourcesTools
 
             if (resource instanceof RawResource)
             {
-                BigInteger storageCapacity = parseResource(content, "Storage capacity", "<span class=\\\"\\\">", "<\\/span>", techId);
+                BigInteger storageCapacity = parseResource(content, "Storage capacity", "<span class=\\\"middlemark\\\">", "<\\/span>", techId);
                 ((RawResource) resource).setStorageCapacity(storageCapacity);
 
                 BigInteger denCapacity = parseResource(content, "Den Capacity", "<span class=\\\"overermark\\\">", "<\\/span>", techId);

@@ -11,7 +11,7 @@ public class Logger
     {
         System.out.println(new Date() + " [" + infoKey + "] " + msg);
     }
-    
+
     public static void traceERROR(String msg)
     {
         System.out.println(new Date() + " [" + errorKey + "] " + msg);

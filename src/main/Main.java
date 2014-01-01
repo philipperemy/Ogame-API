@@ -5,10 +5,9 @@ import java.io.PrintStream;
 import java.net.MalformedURLException;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import connection.ClientFactory;
+import construction.Construction;
 import construction.ConstructionsThread;
-import construction.resourcebuilding.mine.DeuteriumSynthesizer;
-import construction.resourcebuilding.mine.MetalMine;
-import construction.resourcebuilding.mine.Mine;
+import construction.vessel.ColonyShip;
 
 public class Main
 {
@@ -25,13 +24,18 @@ public class Main
          */
         System.setErr(new PrintStream("hello"));
         ClientFactory.init(121, "xfear238", "2296NABLT");
-        
-        Mine metalMine = new MetalMine();
-        Mine Deuterium2 = new DeuteriumSynthesizer();
-        ConstructionsThread.pendingConstructions.add(metalMine);
-        ConstructionsThread.pendingConstructions.add(Deuterium2);
-        new ConstructionsThread(10000).start();
 
-        //Test.test();
+        /*
+         * Mine metalMine = new MetalMine();
+         * Mine Deuterium2 = new DeuteriumSynthesizer();
+         * ConstructionsThread.pendingConstructions.add(metalMine);
+         * ConstructionsThread.pendingConstructions.add(Deuterium2);
+         */
+        Construction colonyShip = new ColonyShip();
+        ConstructionsThread.pendingConstructions.add(colonyShip);
+        new ConstructionsThread(10000).start();
+        // new ResourcesThread(10000).start();
+
+        // Test.test();
     }
 }

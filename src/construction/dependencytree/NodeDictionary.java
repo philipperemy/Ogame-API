@@ -12,7 +12,7 @@ public class NodeDictionary
     {
         nodes.add(node);
     }
-    
+
     public static List<Node> getAll()
     {
         return nodes;

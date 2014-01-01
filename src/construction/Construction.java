@@ -7,13 +7,13 @@ import construction.dependencytree.NodeDictionary;
 
 public abstract class Construction
 {
-    //TODO: create equals() and hashCode() methods because the class is used in sets.
-    private Duration     duration;
-    private int          level;
+    // TODO: create equals() and hashCode() methods because the class is used in sets.
+    private Duration   duration;
+    private int        level;
 
-    private BigInteger   metalRequired     = BigInteger.ZERO;
-    private BigInteger   crystalRequired   = BigInteger.ZERO;
-    private BigInteger   deuteriumRequired = BigInteger.ZERO;
+    private BigInteger metalRequired     = BigInteger.ZERO;
+    private BigInteger crystalRequired   = BigInteger.ZERO;
+    private BigInteger deuteriumRequired = BigInteger.ZERO;
 
     protected abstract String getRef();
 
@@ -25,7 +25,7 @@ public abstract class Construction
             + (getDescription() != null ? "getDescription()=" + getDescription() : "") + "]";
     }
 
-    //Default behavior. Must be override if necessary
+    // Default behavior. Must be override if necessary
     protected Node getDependencyNode()
     {
         return NodeDictionary.getNode();

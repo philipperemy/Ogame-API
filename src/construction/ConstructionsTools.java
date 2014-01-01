@@ -29,7 +29,7 @@ public class ConstructionsTools
 
     public void retrieveLevel(Construction construction)
     {
-        //TODO: todo
+        // TODO: todo
     }
 
 }

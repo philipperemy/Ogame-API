@@ -8,7 +8,7 @@ public class RequirementFactory
 {
     private static Tree tree = loadDependencyTree();
 
-    //Very important for multithreading
+    // Very important for multithreading
     public static synchronized List<Node> getOrderedRequiredItems(Node item)
     {
         List<Node> pendingQueue = new ArrayList<Node>();

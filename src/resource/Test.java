@@ -2,7 +2,6 @@ package resource;
 
 import java.io.IOException;
 import connection.ClientFactory;
-import connection.RequestResponse;
 
 public class Test
 {
@@ -12,14 +11,14 @@ public class Test
 
         ClientFactory.init(121, "xfear238", "2296NABLT");
 
-        
-        
-        /*while (true)
-        {
-            RequestResponse ResponseCode = ClientFactory.get().sendBuildRequest("1");
-            System.out.println(ResponseCode);
-            Thread.sleep(10000);
-        }*/
+        /*
+         * while (true)
+         * {
+         * RequestResponse ResponseCode = ClientFactory.get().sendBuildRequest("1");
+         * System.out.println(ResponseCode);
+         * Thread.sleep(10000);
+         * }
+         */
 
         // ClientFactory.get().sendBuildRequest("2");
         /*

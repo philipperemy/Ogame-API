@@ -22,7 +22,7 @@ public class SolarSatellite extends EnergyProducer
     @Override
     protected Node getDependencyNode()
     {
-        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.SolarSatellite, getLevel()));
+        return NodeDictionary.getNode(NamingFactory.SolarSatellite);
     }
 
 }
