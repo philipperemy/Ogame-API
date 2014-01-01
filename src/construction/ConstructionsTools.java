@@ -3,6 +3,7 @@ package construction;
 import logger.Logger;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import connection.ClientFactory;
+import connection.RequestResponse;
 
 public class ConstructionsTools
 {
@@ -20,15 +21,15 @@ public class ConstructionsTools
     {
     }
 
-    public static void sendBuildRequest(Construction construction)
+    public static RequestResponse sendBuildRequest(Construction construction)
     {
         Logger.traceINFO("Sending build request for : " + construction);
-        ClientFactory.get().sendBuildRequest(construction.getRef());
+        return ClientFactory.get().sendBuildRequest(construction.getRef());
     }
 
     public void retrieveLevel(Construction construction)
     {
-
+        //TODO: todo
     }
 
 }

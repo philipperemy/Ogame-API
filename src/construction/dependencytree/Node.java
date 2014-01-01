@@ -52,8 +52,10 @@ public class Node
     }
 
     public String     data;
-    public List<Node> childs  = new ArrayList<Node>();
-    public boolean    built   = false;
+    public List<Node> childs = new ArrayList<Node>();
+
+    // TODO:Problem with multiple planets
+    public boolean    built  = false;
 
     public Node(String data)
     {
@@ -61,7 +63,7 @@ public class Node
         this.data = data;
     }
 
-    //get rid of built
+    // get rid of built
     public Node(String data, boolean built)
     {
         this(data);

@@ -12,12 +12,14 @@ public class Test
 
         ClientFactory.init(121, "xfear238", "2296NABLT");
 
-        while (true)
+        
+        
+        /*while (true)
         {
             RequestResponse ResponseCode = ClientFactory.get().sendBuildRequest("1");
             System.out.println(ResponseCode);
             Thread.sleep(10000);
-        }
+        }*/
 
         // ClientFactory.get().sendBuildRequest("2");
         /*

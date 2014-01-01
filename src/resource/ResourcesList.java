@@ -40,7 +40,7 @@ public class ResourcesList
         @Override
         public String toString()
         {
-            return " [available=" + getAvailable() + ", storageCapacity=" + storageCapacity + ", currentProduction=" + getAvailable() + ", denCapacity=" + denCapacity + " ]";
+            return " [available=" + getAvailable() + ", storageCapacity=" + getStorageCapacity() + ", currentProduction=" + getCurrentProduction() + ", denCapacity=" + getDenCapacity() + " ]";
         }
 
         private BigInteger storageCapacity;

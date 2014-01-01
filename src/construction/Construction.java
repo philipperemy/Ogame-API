@@ -7,6 +7,7 @@ import construction.dependencytree.NodeDictionary;
 
 public abstract class Construction
 {
+    //TODO: create equals() and hashCode() methods because the class is used in sets.
     private Duration     duration;
     private int          level;
 
@@ -14,9 +15,15 @@ public abstract class Construction
     private BigInteger   crystalRequired   = BigInteger.ZERO;
     private BigInteger   deuteriumRequired = BigInteger.ZERO;
 
-    private Construction nextConstruction;
-
     protected abstract String getRef();
+
+    @Override
+    public String toString()
+    {
+        return "Construction [" + (duration != null ? "duration=" + duration + ", " : "") + "level=" + level + ", " + (metalRequired != null ? "metalRequired=" + metalRequired + ", " : "")
+            + (crystalRequired != null ? "crystalRequired=" + crystalRequired + ", " : "") + (deuteriumRequired != null ? "deuteriumRequired=" + deuteriumRequired + ", " : "") + (getRef() != null ? "getRef()=" + getRef() + ", " : "")
+            + (getDescription() != null ? "getDescription()=" + getDescription() : "") + "]";
+    }
 
     //Default behavior. Must be override if necessary
     protected Node getDependencyNode()
@@ -74,16 +81,6 @@ public abstract class Construction
     public void setDeuteriumRequired(BigInteger deuteriumRequired)
     {
         this.deuteriumRequired = deuteriumRequired;
-    }
-
-    public Construction getNextConstruction()
-    {
-        return nextConstruction;
-    }
-
-    public void setNextConstruction(Construction nextConstruction)
-    {
-        this.nextConstruction = nextConstruction;
     }
 
 }

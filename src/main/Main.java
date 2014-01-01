@@ -3,8 +3,12 @@ package main;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
-import resource.Test;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
+import connection.ClientFactory;
+import construction.ConstructionsThread;
+import construction.resourcebuilding.mine.DeuteriumSynthesizer;
+import construction.resourcebuilding.mine.MetalMine;
+import construction.resourcebuilding.mine.Mine;
 
 public class Main
 {
@@ -20,9 +24,14 @@ public class Main
          * http://s121-en.ogame.gameforge.com/game/index.php?page=resources&modus=1&type=4&menge=1&token=d3c9d81ce171c86493ca1ac616b00377
          */
         System.setErr(new PrintStream("hello"));
-        // Test.test();
-        // new ResourcesThread(10000).start();
+        ClientFactory.init(121, "xfear238", "2296NABLT");
+        
+        Mine metalMine = new MetalMine();
+        Mine Deuterium2 = new DeuteriumSynthesizer();
+        ConstructionsThread.pendingConstructions.add(metalMine);
+        ConstructionsThread.pendingConstructions.add(Deuterium2);
+        new ConstructionsThread(10000).start();
 
-        Test.test();
+        //Test.test();
     }
 }
