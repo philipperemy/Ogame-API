@@ -8,9 +8,14 @@ public class RequirementFactory
 {
     private static Tree tree = loadDependencyTree();
 
-    public static synchronized List<Node> getOrderedRequiredItems(List<Node> builtNodes, Node item)
+    public static synchronized List<Node> getOrderedRequiredItems(Set<Node> builtNodes, Node item)
     {
-        updateNode(item, builtNodes);
+        if(builtNodes.contains(item))
+        {
+           return new ArrayList<>();
+        }
+        
+        updateNodes(tree.root, builtNodes);
         return getOrderedRequiredItems(item);
     }
     
@@ -26,23 +31,24 @@ public class RequirementFactory
         return pendingQueue;
     }
 
-    private static void updateNode(Node current, List<Node> builtNodes)
+    //XXX: bug in the method
+    private static void updateNodes(Node current, Set<Node> builtNodes)
     {
-        for(Node builtNode : builtNodes)
+        /*for(Node builtNode : builtNodes)
         {
             if(builtNode.getData().equals(current.getData()))
             {
                 builtNode.built = true;
                 break;
             }
-        }
+        }*/
         
         current.mark = true;
         for(Node child : current.childs)
         {
             if(!child.mark)
             {
-                updateNode(current, builtNodes);
+                updateNodes(current, builtNodes);
             }
         }
     }

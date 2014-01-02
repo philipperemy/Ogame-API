@@ -1,7 +1,12 @@
 package construction;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import planet.Planet;
@@ -10,18 +15,61 @@ import logger.Logger;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import connection.ClientFactory;
 import connection.RequestResponse;
+import construction.dependencytree.Node;
+import construction.dependencytree.NodeConstructionConvert;
+import construction.dependencytree.RequirementFactory;
 
 public class ConstructionsTools
 {
     public static void update()
     {
+        //TODO: change it
         retrieveLevels(PlanetList.planet1);
     }
 
-    public static RequestResponse sendBuildRequest(Construction construction)
+    public static RequestResponse sendBuildRequest(Planet planet, Construction construction)
     {
-        Logger.traceINFO("Sending build request for : " + construction);
-        return ClientFactory.get().sendBuildRequest(construction.getRef());
+        if(getRequiredConstructions(planet, construction).size() != 1)
+        {
+            throw new RuntimeException("Error : Requirements are not met for construction : " + construction);
+        }
+        
+        return sendBuildRequestForRef(construction.getRef());
+    }
+    
+    public static RequestResponse sendBuildRequestForRef(String ref)
+    {
+        Logger.traceINFO("Sending build request for : " + ref);
+        return ClientFactory.get().sendBuildRequest(ref);
+    }
+    
+    public static Set<Construction> getRequiredConstructions(Planet planet, Construction target)
+    {
+        Set<Construction> requiredConstructions = new HashSet<>();
+        Set<Node> builtNodes = new HashSet<>();
+        for(Construction constructionBuilt : planet.getConstructionsBuilt())
+        {
+            builtNodes.addAll(NodeConstructionConvert.convert(constructionBuilt));   
+        }
+        
+        List<Node> requiredNodes = RequirementFactory.getOrderedRequiredItems(builtNodes, target.getDependencyNode());
+        
+        Map<Node, Construction> nodeByRefMap = new HashMap<Node, Construction>();
+        for(Construction constructionBuilt : planet.getConstructionsBuilt())
+        {
+            nodeByRefMap.put(constructionBuilt.getDependencyNode(), constructionBuilt);
+        }
+        
+        for(Node requiredNode : requiredNodes)
+        {
+            Construction requiredConstruction = nodeByRefMap.get(requiredNode);
+            if(requiredConstruction != null)
+            {
+                requiredConstructions.add(requiredConstruction);
+            }
+        }
+        
+        return requiredConstructions;
     }
 
     public static void retrieveLevels(Planet planet)

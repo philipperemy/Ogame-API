@@ -1,15 +1,57 @@
 package construction;
 
 import java.math.BigInteger;
+import java.util.Random;
 import tool.Duration;
 import construction.dependencytree.Node;
 import construction.dependencytree.NodeDictionary;
 
 public abstract class Construction
 {
-    // TODO: create equals() and hashCode() methods because the class is used in sets.
+    private static Random intGen = new Random();
+    
+    @Override
+    public int hashCode()
+    {
+        if(getLevel() == null)
+        {
+            return intGen.nextInt(Integer.MAX_VALUE);
+        }
+        else {
+            return getDescription().hashCode() * 1337 + level.hashCode();
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        
+        Construction other = (Construction) obj;
+        
+        if(other.getLevel() == null || getLevel() == null)
+        {
+            return false;
+        }
+        
+        if(other.getDescription().equals(getDescription()))
+        {
+            if(other.getLevel().intValue() == getLevel().intValue())
+            {
+                return true;                
+            }
+        }
+        
+        return false;
+    }
+
     private Duration   duration;
-    private int        level;
+    private Integer    level             = null;
 
     private BigInteger metalRequired     = BigInteger.ZERO;
     private BigInteger crystalRequired   = BigInteger.ZERO;
@@ -21,7 +63,7 @@ public abstract class Construction
     public String toString()
     {
         return "Construction [" + (duration != null ? "duration=" + duration + ", " : "") + "level=" + level + ", " + (metalRequired != null ? "metalReq=" + metalRequired + ", " : "")
-            + (crystalRequired != null ? "crystalReq=" + crystalRequired + ", " : "") + (deuteriumRequired != null ? "deuteriumReq=" + deuteriumRequired + ", " : "") + (getRef() != null ? "getRef()=" + getRef() + ", " : "")
+            + (crystalRequired != null ? "crystalReq=" + crystalRequired + ", " : "") + (deuteriumRequired != null ? "deuteriumReq=" + deuteriumRequired + ", " : "") + (getRef() != null ? "ref=" + getRef() + ", " : "")
             + (getDescription() != null ? "desc=" + getDescription() : "") + "]";
     }
 
@@ -43,7 +85,7 @@ public abstract class Construction
         this.duration = duration;
     }
 
-    public int getLevel()
+    public Integer getLevel()
     {
         return level;
     }

@@ -32,7 +32,8 @@ public class Planet
         List<Construction> builtConstructions = new ArrayList<>();
         for(Construction current : constructionsList.getConstructions())
         {
-            if(current.getLevel() > 0)
+            Integer level = current.getLevel();
+            if(level != null && level > 0)
             {
                 builtConstructions.add(current);
             }
