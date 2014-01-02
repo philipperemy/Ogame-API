@@ -38,6 +38,7 @@ public class NodeDictionary
         return rootNode;
     }
 
+    //TODO: use a constructor name, level instead of name+level. equals() hashCode => return name+level
     public static final Node ResearchLab1                 = new Node(NamingFactory.ResearchLab + "1");
     public static final Node EnergyTechnology1            = new Node(NamingFactory.EnergyTechnology + "1");
     public static final Node ResearchLab2                 = new Node(NamingFactory.ResearchLab + "2");
