@@ -20,13 +20,13 @@ public abstract class Construction
     @Override
     public String toString()
     {
-        return "Construction [" + (duration != null ? "duration=" + duration + ", " : "") + "level=" + level + ", " + (metalRequired != null ? "metalRequired=" + metalRequired + ", " : "")
-            + (crystalRequired != null ? "crystalRequired=" + crystalRequired + ", " : "") + (deuteriumRequired != null ? "deuteriumRequired=" + deuteriumRequired + ", " : "") + (getRef() != null ? "getRef()=" + getRef() + ", " : "")
-            + (getDescription() != null ? "getDescription()=" + getDescription() : "") + "]";
+        return "Construction [" + (duration != null ? "duration=" + duration + ", " : "") + "level=" + level + ", " + (metalRequired != null ? "metalReq=" + metalRequired + ", " : "")
+            + (crystalRequired != null ? "crystalReq=" + crystalRequired + ", " : "") + (deuteriumRequired != null ? "deuteriumReq=" + deuteriumRequired + ", " : "") + (getRef() != null ? "getRef()=" + getRef() + ", " : "")
+            + (getDescription() != null ? "desc=" + getDescription() : "") + "]";
     }
 
     // Default behavior. Must be override if necessary
-    protected Node getDependencyNode()
+    public Node getDependencyNode()
     {
         return NodeDictionary.getNode();
     }

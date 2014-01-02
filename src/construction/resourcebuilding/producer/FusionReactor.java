@@ -20,7 +20,7 @@ public class FusionReactor extends EnergyProducer
     }
 
     @Override
-    protected Node getDependencyNode()
+    public Node getDependencyNode()
     {
         return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.FusionReactor, getLevel()));
     }

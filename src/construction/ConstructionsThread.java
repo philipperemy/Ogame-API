@@ -28,6 +28,9 @@ public class ConstructionsThread
         @Override
         public void run()
         {
+            
+            ConstructionsTools.update();
+            
             while (condition)
             {
                 Logger.traceINFO("Running...");

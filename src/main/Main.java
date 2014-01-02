@@ -31,8 +31,6 @@ public class Main
          * ConstructionsThread.pendingConstructions.add(metalMine);
          * ConstructionsThread.pendingConstructions.add(Deuterium2);
          */
-        Construction colonyShip = new ColonyShip();
-        ConstructionsThread.pendingConstructions.add(colonyShip);
         new ConstructionsThread(10000).start();
         // new ResourcesThread(10000).start();
 

@@ -20,7 +20,7 @@ public class Battlecruiser extends Construction
     }
 
     @Override
-    protected Node getDependencyNode()
+    public Node getDependencyNode()
     {
         return NodeDictionary.getNode(NamingFactory.BattleCruiser);
     }

@@ -20,7 +20,7 @@ public class Destroyer extends Construction
     }
 
     @Override
-    protected Node getDependencyNode()
+    public Node getDependencyNode()
     {
         return NodeDictionary.getNode(NamingFactory.Destroyer);
     }

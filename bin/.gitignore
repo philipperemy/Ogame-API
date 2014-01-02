@@ -1,9 +1,5 @@
-/connection
-/logger
 /main
-/resources
 /construction
-/tools
 /resource
-/tool
+/logger
 /planet

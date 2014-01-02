@@ -6,6 +6,7 @@ import construction.Construction;
 
 public abstract class Mine extends Construction
 {
+
     private BigInteger energyNeeded;
 
     public BigInteger getEnergyNeeded()

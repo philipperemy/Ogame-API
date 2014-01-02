@@ -54,8 +54,8 @@ public class Node
     public String     data;
     public List<Node> childs = new ArrayList<Node>();
 
-    // TODO:Problem with multiple planets
     public boolean    built  = false;
+    public boolean    mark   = false;
 
     public Node(String data)
     {

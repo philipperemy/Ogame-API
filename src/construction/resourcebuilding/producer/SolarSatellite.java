@@ -20,7 +20,7 @@ public class SolarSatellite extends EnergyProducer
     }
 
     @Override
-    protected Node getDependencyNode()
+    public Node getDependencyNode()
     {
         return NodeDictionary.getNode(NamingFactory.SolarSatellite);
     }

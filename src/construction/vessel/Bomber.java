@@ -20,7 +20,7 @@ public class Bomber extends Construction
     }
 
     @Override
-    protected Node getDependencyNode()
+    public Node getDependencyNode()
     {
         return NodeDictionary.getNode(NamingFactory.Bomber);
     }
