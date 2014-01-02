@@ -3,11 +3,6 @@ package construction;
 public class NamingFactory
 {
 
-    public static String merge(String name, int level)
-    {
-        return name + String.valueOf(level);
-    }
-
     public static final String ResearchLab                  = "ResearchLab";
     public static final String EnergyTechnology             = "EnergyTechnology";
     public static final String ComputerTechnology           = "ComputerTechnology";

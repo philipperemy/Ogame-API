@@ -1,11 +1,18 @@
 package construction.dependencytree;
 
+import construction.Construction;
+import construction.facility.ResearchLab;
+
 public class RealMain
 {
 
     public static void main(String[] args)
     {
-        Node deathStar = NodeDictionary.DeathStar;
+        Construction researchLab8 = new ResearchLab();
+        researchLab8.setLevel(8);
+        NodeConstructionConvert.convert(researchLab8);
+
+        /*Node deathStar = NodeDictionary.DeathStar;
         RequirementFactory.getOrderedRequiredItems(deathStar).toString();
         String actual = RequirementFactory.getOrderedRequiredItems(deathStar).toString();
         System.out.println(actual);
@@ -18,7 +25,7 @@ public class RealMain
         else
         {
             System.out.println("KO");
-        }
+        }*/
     }
 
 }

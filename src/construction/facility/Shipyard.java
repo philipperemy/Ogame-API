@@ -23,6 +23,6 @@ public class Shipyard extends Construction
     @Override
     public Node getDependencyNode()
     {
-        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.Shipyard, getLevel()));
+        return NodeDictionary.getNode(NamingFactory.Shipyard, getLevel());
     }
 }

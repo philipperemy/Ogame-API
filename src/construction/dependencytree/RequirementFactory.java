@@ -30,7 +30,7 @@ public class RequirementFactory
     {
         for(Node builtNode : builtNodes)
         {
-            if(builtNode.data.equals(current.data))
+            if(builtNode.getData().equals(current.getData()))
             {
                 builtNode.built = true;
                 break;

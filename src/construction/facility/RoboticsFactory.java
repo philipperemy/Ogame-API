@@ -23,6 +23,6 @@ public class RoboticsFactory extends Construction
     @Override
     public Node getDependencyNode()
     {
-        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.RoboticsFactory, getLevel()));
+        return NodeDictionary.getNode(NamingFactory.RoboticsFactory, getLevel());
     }
 }

@@ -23,6 +23,6 @@ public class MissileSilo extends Construction
     @Override
     public Node getDependencyNode()
     {
-        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.MissileSilo, getLevel()));
+        return NodeDictionary.getNode(NamingFactory.MissileSilo, getLevel());
     }
 }

@@ -23,6 +23,6 @@ public class ResearchLab extends Construction
     @Override
     public Node getDependencyNode()
     {
-        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.ResearchLab, getLevel()));
+        return NodeDictionary.getNode(NamingFactory.ResearchLab, getLevel());
     }
 }

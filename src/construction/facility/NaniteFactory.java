@@ -23,6 +23,6 @@ public class NaniteFactory extends Construction
     @Override
     public Node getDependencyNode()
     {
-        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.NaniteFactory, getLevel()));
+        return NodeDictionary.getNode(NamingFactory.NaniteFactory, getLevel());
     }
 }

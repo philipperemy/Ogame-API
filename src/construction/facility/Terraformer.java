@@ -23,6 +23,6 @@ public class Terraformer extends Construction
     @Override
     public Node getDependencyNode()
     {
-        return NodeDictionary.getNode(NamingFactory.merge(NamingFactory.Terraformer, getLevel()));
+        return NodeDictionary.getNode(NamingFactory.Terraformer, getLevel());
     }
 }

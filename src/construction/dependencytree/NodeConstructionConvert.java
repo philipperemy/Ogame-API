@@ -1,16 +1,28 @@
 package construction.dependencytree;
 
+import java.util.ArrayList;
 import java.util.List;
 import construction.Construction;
 
 public class NodeConstructionConvert
 {
-    public List<Node> convert(Construction construction)
+    public static List<Node> convert(Construction construction)
     {
-        return null;
-       /* for (int i = 0; i < construction.getLevel(); i++)
+        List<Node> nodes = new ArrayList<>();
+        Node rootConstructionNode = construction.getDependencyNode();
+        nodes.add(rootConstructionNode);
+
+        String nodeRootName = rootConstructionNode.getName();
+        Integer nodeRootLevel = construction.getLevel();
+
+        if (nodeRootLevel != null)
         {
-           // construction.getDependencyNode().
-        }*/
+            for (int i = nodeRootLevel.intValue() - 1; i > 0; i--)
+            {
+                nodes.add(new Node(nodeRootName, i));
+            }
+        }
+
+        return nodes;
     }
 }

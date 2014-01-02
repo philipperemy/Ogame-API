@@ -70,7 +70,7 @@ public class TreeTool
             for (int i = 0; i < path.size(); i++)
             {
                 Node currentNode = path.get(i);
-                if (currentNode.data.equalsIgnoreCase(leaf.data))
+                if (currentNode.getData().equalsIgnoreCase(leaf.getData()))
                 {
                     List<Node> truncNodesList = new ArrayList<Node>();
                     truncNodesList.addAll(path);
