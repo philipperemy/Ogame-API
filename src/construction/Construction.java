@@ -8,16 +8,23 @@ import construction.dependencytree.NodeDictionary;
 
 public abstract class Construction
 {
+    @Override
+    public String toString()
+    {
+        return "Construction [" + (name != null ? "name=" + name + ", " : "") + (level != null ? "level=" + level : "") + "]";
+    }
+
     private static Random intGen = new Random();
-    
+
     @Override
     public int hashCode()
     {
-        if(getLevel() == null)
+        if (getLevel() == null)
         {
             return intGen.nextInt(Integer.MAX_VALUE);
         }
-        else {
+        else
+        {
             return getDescription().hashCode() * 1337 + level.hashCode();
         }
     }
@@ -31,41 +38,37 @@ public abstract class Construction
             return false;
         if (getClass() != obj.getClass())
             return false;
-        
+
         Construction other = (Construction) obj;
-        
-        if(other.getLevel() == null || getLevel() == null)
+
+        if (other.getLevel() == null || getLevel() == null)
         {
             return false;
         }
-        
-        if(other.getDescription().equals(getDescription()))
+
+        if (other.getDescription().equals(getDescription()))
         {
-            if(other.getLevel().intValue() == getLevel().intValue())
+            if (other.getLevel().intValue() == getLevel().intValue())
             {
-                return true;                
+                return true;
             }
         }
-        
+
         return false;
     }
 
-    private Duration   duration;
-    private Integer    level             = null;
+    private Duration     duration;
+    private String       name              = getName();
+    private Integer      level             = null;
+    private Construction previous          = null;
 
-    private BigInteger metalRequired     = BigInteger.ZERO;
-    private BigInteger crystalRequired   = BigInteger.ZERO;
-    private BigInteger deuteriumRequired = BigInteger.ZERO;
+    private BigInteger   metalRequired     = BigInteger.ZERO;
+    private BigInteger   crystalRequired   = BigInteger.ZERO;
+    private BigInteger   deuteriumRequired = BigInteger.ZERO;
 
     protected abstract String getRef();
 
-    @Override
-    public String toString()
-    {
-        return "Construction [" + (duration != null ? "duration=" + duration + ", " : "") + "level=" + level + ", " + (metalRequired != null ? "metalReq=" + metalRequired + ", " : "")
-            + (crystalRequired != null ? "crystalReq=" + crystalRequired + ", " : "") + (deuteriumRequired != null ? "deuteriumReq=" + deuteriumRequired + ", " : "") + (getRef() != null ? "ref=" + getRef() + ", " : "")
-            + (getDescription() != null ? "desc=" + getDescription() : "") + "]";
-    }
+    public abstract String getName();
 
     // Default behavior. Must be override if necessary
     public Node getDependencyNode()
@@ -123,6 +126,16 @@ public abstract class Construction
     public void setDeuteriumRequired(BigInteger deuteriumRequired)
     {
         this.deuteriumRequired = deuteriumRequired;
+    }
+
+    public Construction getPrevious()
+    {
+        return previous;
+    }
+
+    public void setPrevious(Construction previous)
+    {
+        this.previous = previous;
     }
 
 }

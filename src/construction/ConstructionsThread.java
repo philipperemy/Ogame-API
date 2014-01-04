@@ -1,8 +1,7 @@
 package construction;
 
-import planet.Planet;
-import planet.PlanetList;
 import logger.Logger;
+import planet.PlanetList;
 import connection.RequestResponse;
 
 public class ConstructionsThread
@@ -30,9 +29,9 @@ public class ConstructionsThread
         @Override
         public void run()
         {
-            
+
             ConstructionsTools.update();
-            
+
             while (condition)
             {
                 Logger.traceINFO("Running...");
@@ -42,7 +41,7 @@ public class ConstructionsThread
 
                     if (construction != null)
                     {
-                        //TODO: change it
+                        // TODO: change it
                         RequestResponse response = ConstructionsTools.sendBuildRequest(PlanetList.planet1, construction);
 
                         if (response == RequestResponse.QUEUE_IS_FULL)

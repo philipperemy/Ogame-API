@@ -1,6 +1,8 @@
 package construction.resourcebuilding.den;
 
 import construction.Construction;
+import construction.ConstructionRefManager;
+import construction.NamingFactory;
 
 public class SeabedDeuteriumDen extends Construction
 {
@@ -14,7 +16,13 @@ public class SeabedDeuteriumDen extends Construction
     @Override
     protected String getRef()
     {
-        return "27";
+        return ConstructionRefManager.SEABED_DEUTERIUM_DEN_REF;
+    }
+
+    @Override
+    public String getName()
+    {
+        return NamingFactory.SeabedDeuteriumDen;
     }
 
 }

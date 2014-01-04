@@ -3,6 +3,9 @@ package construction;
 public class NamingFactory
 {
 
+    /**
+     * involved in requirements tree
+     */
     public static final String ResearchLab                  = "ResearchLab";
     public static final String EnergyTechnology             = "EnergyTechnology";
     public static final String ComputerTechnology           = "ComputerTechnology";
@@ -55,4 +58,17 @@ public class NamingFactory
     public static final String LightFighter                 = "LightFighter";
     public static final String BattleCruiser                = "BattleCruiser";
 
+    /**
+     * No requirements for these items. (Except for the level-1)
+     */
+    public static final String AllianceDepot                = "AllianceDepot";
+    public static final String CrystalMine                  = "CrystalMine";
+    public static final String MetalMine                    = "MetalMine";
+    public static final String SeabedDeuteriumDen           = "SeabedDeuteriumDen";
+    public static final String ShieldedMetalDen             = "ShieldedMetalDen";
+    public static final String UndergroundCrystalDen        = "UndergroundCrystalDen";
+    public static final String SolarPlant                   = "SolarPlant";
+    public static final String CrystalStorage               = "CrystalStorage";
+    public static final String DeuteriumTank                = "DeuteriumTank";
+    public static final String MetalStorage                 = "MetalStorage";
 }

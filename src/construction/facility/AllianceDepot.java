@@ -1,6 +1,8 @@
 package construction.facility;
 
 import construction.Construction;
+import construction.ConstructionRefManager;
+import construction.NamingFactory;
 
 public class AllianceDepot extends Construction
 {
@@ -14,7 +16,13 @@ public class AllianceDepot extends Construction
     @Override
     protected String getRef()
     {
-        return "34";
+        return ConstructionRefManager.ALLIANCE_DEPOT_REF;
+    }
+
+    @Override
+    public String getName()
+    {
+        return NamingFactory.AllianceDepot;
     }
 
 }

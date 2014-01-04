@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Node
 {
-    //Only level and name
-    //TODO: pb with fighters and all those things. Tho, without level should be ok
+    // Only level and name
+    // TODO: pb with fighters and all those things. Tho, without level should be ok
     @Override
     public int hashCode()
     {
@@ -17,7 +17,7 @@ public class Node
         return result;
     }
 
-  //Only level and name
+    // Only level and name
     @Override
     public boolean equals(Object obj)
     {
@@ -54,7 +54,7 @@ public class Node
     public String getData()
     {
         String data = name;
-        if(level != null)
+        if (level != null)
         {
             data += level;
         }
@@ -67,7 +67,6 @@ public class Node
     public List<Node> childs = new ArrayList<Node>();
 
     public boolean    built  = false;
-    public boolean    mark   = false;
 
     public Node(String name)
     {
@@ -97,7 +96,7 @@ public class Node
     {
         return name;
     }
-    
+
     public Integer getLevel()
     {
         return level;

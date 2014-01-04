@@ -1,6 +1,7 @@
 package construction.vessel;
 
 import construction.Construction;
+import construction.ConstructionRefManager;
 import construction.NamingFactory;
 import construction.dependencytree.Node;
 import construction.dependencytree.NodeDictionary;
@@ -11,7 +12,7 @@ public class Battleship extends Construction
     @Override
     protected String getRef()
     {
-        return "207";
+        return ConstructionRefManager.BATTLESHIP_REF;
     }
 
     @Override
@@ -24,6 +25,12 @@ public class Battleship extends Construction
     public Node getDependencyNode()
     {
         return NodeDictionary.getNode(NamingFactory.BattleShip);
+    }
+
+    @Override
+    public String getName()
+    {
+        return NamingFactory.BattleShip;
     }
 
 }

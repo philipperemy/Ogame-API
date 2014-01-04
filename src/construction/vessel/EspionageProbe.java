@@ -1,6 +1,7 @@
 package construction.vessel;
 
 import construction.Construction;
+import construction.ConstructionRefManager;
 import construction.NamingFactory;
 import construction.dependencytree.Node;
 import construction.dependencytree.NodeDictionary;
@@ -10,7 +11,7 @@ public class EspionageProbe extends Construction
     @Override
     protected String getRef()
     {
-        return "210";
+        return ConstructionRefManager.ESPIONAGE_PROBE_REF;
     }
 
     @Override
@@ -23,5 +24,11 @@ public class EspionageProbe extends Construction
     public Node getDependencyNode()
     {
         return NodeDictionary.getNode(NamingFactory.EspionageProbe);
+    }
+
+    @Override
+    public String getName()
+    {
+        return NamingFactory.EspionageProbe;
     }
 }

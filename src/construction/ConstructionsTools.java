@@ -1,74 +1,66 @@
 package construction;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import logger.Logger;
 import planet.Planet;
 import planet.PlanetList;
-import logger.Logger;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import connection.ClientFactory;
 import connection.RequestResponse;
 import construction.dependencytree.Node;
 import construction.dependencytree.NodeConstructionConvert;
 import construction.dependencytree.RequirementFactory;
+import construction.resourcebuilding.mine.DeuteriumSynthesizer;
 
 public class ConstructionsTools
 {
     public static void update()
     {
-        //TODO: change it
+        // TODO: change it
         retrieveLevels(PlanetList.planet1);
     }
 
     public static RequestResponse sendBuildRequest(Planet planet, Construction construction)
     {
-        if(getRequiredConstructions(planet, construction).size() != 1)
+        if (getRequiredConstructions(planet, construction).size() != 1)
         {
             throw new RuntimeException("Error : Requirements are not met for construction : " + construction);
         }
-        
+
         return sendBuildRequestForRef(construction.getRef());
     }
-    
+
     public static RequestResponse sendBuildRequestForRef(String ref)
     {
         Logger.traceINFO("Sending build request for : " + ref);
         return ClientFactory.get().sendBuildRequest(ref);
     }
-    
+
+    // TODO: do it
     public static Set<Construction> getRequiredConstructions(Planet planet, Construction target)
     {
-        Set<Construction> requiredConstructions = new HashSet<>();
+        //Preserve the insertion order!
+        Set<Construction> requiredConstructions = new LinkedHashSet<>();
         Set<Node> builtNodes = new HashSet<>();
-        for(Construction constructionBuilt : planet.getConstructionsBuilt())
+        List<Construction> constructionsBuilt = planet.getConstructionsBuilt();
+        for (Construction constructionBuilt : constructionsBuilt)
         {
-            builtNodes.addAll(NodeConstructionConvert.convert(constructionBuilt));   
+            builtNodes.addAll(NodeConstructionConvert.convert(constructionBuilt));
         }
-        
+
         List<Node> requiredNodes = RequirementFactory.getOrderedRequiredItems(builtNodes, target.getDependencyNode());
-        
-        Map<Node, Construction> nodeByRefMap = new HashMap<Node, Construction>();
-        for(Construction constructionBuilt : planet.getConstructionsBuilt())
+
+        for (Node reqNode : requiredNodes)
         {
-            nodeByRefMap.put(constructionBuilt.getDependencyNode(), constructionBuilt);
+            requiredConstructions.add(ConstructionsReferential.getConstruction(reqNode));
         }
-        
-        for(Node requiredNode : requiredNodes)
-        {
-            Construction requiredConstruction = nodeByRefMap.get(requiredNode);
-            if(requiredConstruction != null)
-            {
-                requiredConstructions.add(requiredConstruction);
-            }
-        }
-        
+
         return requiredConstructions;
     }
 
@@ -86,11 +78,13 @@ public class ConstructionsTools
         {
             List<Object> nextRefAndLevelList = getNextRefAndLevel("<div class=\"buildingimg\">", resourcesPageAsXml, i);
             String currentRef = (String) nextRefAndLevelList.get(0);
-            Construction currentConstruction = planet.getConstructionsList().getConstruction(currentRef);
-            currentConstruction.setLevel((Integer) nextRefAndLevelList.get(1));
-            Logger.traceINFO("Updated : " + currentConstruction.toString());
+            String constructionName = ConstructionRefManager.getNameByRef(currentRef);
+            int level = (Integer) nextRefAndLevelList.get(1);
+            if(!currentRef.equals(ConstructionRefManager.SOLAR_SATELLITE_REF))
+            {
+                planet.setConstructionLevel(constructionName, level);                
+            }
         }
-
     }
 
     // ref : .get(0)
@@ -107,16 +101,10 @@ public class ConstructionsTools
         String refStartTag = " ref=\"";
         tmpContent = tmpContent.substring(tmpContent.indexOf(refStartTag) + refStartTag.length());
         String ref = tmpContent.substring(0, tmpContent.indexOf("\""));
-        
-        String tmpTag = "void(0);";
+
+        String tmpTag = "textlabel";
         String endTag = "div";
-        while(tmpContent.indexOf(tmpTag) < tmpContent.indexOf(endTag))
-        {
-            tmpContent = tmpContent.substring(tmpContent.indexOf(tmpTag) + tmpTag.length()); // ref javascript.void(0)            
-        }
-        
-        tmpContent = tmpContent.substring(ref.length());
-        tmpContent = tmpContent.substring(tmpContent.indexOf(">"));
+        tmpContent = tmpContent.substring(tmpContent.indexOf(tmpTag) + tmpTag.length());
         int level = extractInt(tmpContent.substring(0, tmpContent.indexOf(endTag)));
 
         List<Object> result = new ArrayList<>();

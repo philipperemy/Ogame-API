@@ -19,16 +19,16 @@ public class NodeDictionary
     }
 
     // Poor efficiency but it's all right
-    
+
     public static Node getNode(String name)
     {
         return getNode(name, null);
     }
-    
+
     public static Node getNode(String name, Integer level)
     {
         String data = name;
-        if(level != null)
+        if (level != null)
         {
             data += level;
         }
@@ -50,7 +50,7 @@ public class NodeDictionary
         return rootNode;
     }
 
-    //TODO: use a constructor name, level instead of name+level. equals() hashCode => return name+level
+    // TODO: use a constructor name, level instead of name+level. equals() hashCode => return name+level
     public static final Node ResearchLab1                 = new Node(NamingFactory.ResearchLab, 1);
     public static final Node EnergyTechnology1            = new Node(NamingFactory.EnergyTechnology, 1);
     public static final Node ResearchLab2                 = new Node(NamingFactory.ResearchLab, 2);

@@ -1,6 +1,8 @@
 package construction.resourcebuilding.den;
 
 import construction.Construction;
+import construction.ConstructionRefManager;
+import construction.NamingFactory;
 
 public class ShieldedMetalDen extends Construction
 {
@@ -13,7 +15,13 @@ public class ShieldedMetalDen extends Construction
     @Override
     protected String getRef()
     {
-        return "25";
+        return ConstructionRefManager.SHIELDED_METAL_DEN_REF;
+    }
+
+    @Override
+    public String getName()
+    {
+        return NamingFactory.ShieldedMetalDen;
     }
 
 }

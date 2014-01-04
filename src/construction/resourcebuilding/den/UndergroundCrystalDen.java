@@ -1,6 +1,8 @@
 package construction.resourcebuilding.den;
 
 import construction.Construction;
+import construction.ConstructionRefManager;
+import construction.NamingFactory;
 
 public class UndergroundCrystalDen extends Construction
 {
@@ -14,7 +16,13 @@ public class UndergroundCrystalDen extends Construction
     @Override
     protected String getRef()
     {
-        return "26";
+        return ConstructionRefManager.UNDERGROUND_CRYSTAL_DEN_REF;
+    }
+
+    @Override
+    public String getName()
+    {
+        return NamingFactory.UndergroundCrystalDen;
     }
 
 }

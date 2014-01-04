@@ -1,5 +1,10 @@
 package construction.resourcebuilding.mine;
 
+import construction.ConstructionRefManager;
+import construction.NamingFactory;
+import construction.dependencytree.Node;
+import construction.dependencytree.NodeDictionary;
+
 public class DeuteriumSynthesizer extends Mine
 {
 
@@ -12,7 +17,19 @@ public class DeuteriumSynthesizer extends Mine
     @Override
     protected String getRef()
     {
-        return "3";
+        return ConstructionRefManager.DEUTERIUM_SYNTHETISER_REF;
     }
 
+
+    @Override
+    public Node getDependencyNode()
+    {
+        return NodeDictionary.getNode(NamingFactory.DeuteriumSynthesizer, getLevel());
+    }
+
+    @Override
+    public String getName()
+    {
+        return NamingFactory.DeuteriumSynthesizer;
+    }
 }

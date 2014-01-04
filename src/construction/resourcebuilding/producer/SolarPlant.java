@@ -1,5 +1,8 @@
 package construction.resourcebuilding.producer;
 
+import construction.ConstructionRefManager;
+import construction.NamingFactory;
+
 public class SolarPlant extends EnergyProducer
 {
 
@@ -12,7 +15,13 @@ public class SolarPlant extends EnergyProducer
     @Override
     protected String getRef()
     {
-        return "4";
+        return ConstructionRefManager.SOLAR_PLANT_REF;
+    }
+
+    @Override
+    public String getName()
+    {
+        return NamingFactory.SolarPlant;
     }
 
 }

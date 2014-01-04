@@ -10,15 +10,24 @@ public class RequirementFactory
 
     public static synchronized List<Node> getOrderedRequiredItems(Set<Node> builtNodes, Node item)
     {
-        if(builtNodes.contains(item))
+        if (builtNodes.contains(item))
         {
-           return new ArrayList<>();
+            return new ArrayList<>();
         }
-        
-        updateNodes(tree.root, builtNodes);
-        return getOrderedRequiredItems(item);
+
+        // updateNodes(tree.root, builtNodes);
+        List<Node> initialRequiredItems = getOrderedRequiredItems(item);
+
+        for (Node builtNode : builtNodes)
+        {
+            // remove the dependencies of the required item for this node.
+            List<Node> requiredForCurrentNode = getOrderedRequiredItems(builtNode);
+            initialRequiredItems.removeAll(requiredForCurrentNode);
+        }
+
+        return initialRequiredItems;
     }
-    
+
     public static synchronized List<Node> getOrderedRequiredItems(Node item)
     {
         List<Node> pendingQueue = new ArrayList<Node>();
@@ -31,28 +40,6 @@ public class RequirementFactory
         return pendingQueue;
     }
 
-    //XXX: bug in the method
-    private static void updateNodes(Node current, Set<Node> builtNodes)
-    {
-        /*for(Node builtNode : builtNodes)
-        {
-            if(builtNode.getData().equals(current.getData()))
-            {
-                builtNode.built = true;
-                break;
-            }
-        }*/
-        
-        current.mark = true;
-        for(Node child : current.childs)
-        {
-            if(!child.mark)
-            {
-                updateNodes(current, builtNodes);
-            }
-        }
-    }
-    
     private static void reset()
     {
         for (Node node : NodeDictionary.getAll())

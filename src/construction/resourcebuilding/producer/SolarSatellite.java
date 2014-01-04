@@ -1,5 +1,6 @@
 package construction.resourcebuilding.producer;
 
+import construction.ConstructionRefManager;
 import construction.NamingFactory;
 import construction.dependencytree.Node;
 import construction.dependencytree.NodeDictionary;
@@ -16,9 +17,15 @@ public class SolarSatellite extends EnergyProducer
     @Override
     protected String getRef()
     {
-        return "212";
+        return ConstructionRefManager.SOLAR_SATELLITE_REF;
     }
 
+    @Override
+    public String getName()
+    {
+        return NamingFactory.SolarSatellite;
+    }
+    
     @Override
     public Node getDependencyNode()
     {

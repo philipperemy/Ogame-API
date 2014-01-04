@@ -3,15 +3,12 @@ package main;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
-import planet.Planet;
 import planet.PlanetList;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import connection.ClientFactory;
 import construction.Construction;
-import construction.ConstructionsThread;
 import construction.ConstructionsTools;
 import construction.facility.Shipyard;
-import construction.vessel.ColonyShip;
 
 public class Main
 {
@@ -26,29 +23,29 @@ public class Main
         /**
          * http://s121-en.ogame.gameforge.com/game/index.php?page=resources&modus=1&type=4&menge=1&token=d3c9d81ce171c86493ca1ac616b00377
          */
-        //System.setErr(new PrintStream("hello"));
-        //ClientFactory.init(121, "xfear238", "2296NABLT");
+        System.setErr(new PrintStream("hello"));
+        ClientFactory.init(121, "xfear238", "2296NABLT");
 
-        /*
-         * Mine metalMine = new MetalMine();
-         * Mine Deuterium2 = new DeuteriumSynthesizer();
-         * ConstructionsThread.pendingConstructions.add(metalMine);
-         * ConstructionsThread.pendingConstructions.add(Deuterium2);
-         */
-        
-        Construction shipyard5 = new Shipyard();
-        shipyard5.setLevel(5);
-        PlanetList.planet1.getConstructionsList().shipyardStruct = shipyard5;
+        ConstructionsTools.update();
         
         Construction shipyard10 = new Shipyard();
         shipyard10.setLevel(10);
         
-        for(Construction construction : ConstructionsTools.getRequiredConstructions(PlanetList.planet1, shipyard10))
+        for (Construction construction : ConstructionsTools.getRequiredConstructions(PlanetList.planet1, shipyard10))
         {
             System.out.println(construction);
         }
-        
-        //new ConstructionsThread(10000).start();
+        /*PlanetList.planet1.setConstructionLevel(NamingFactory.Shipyard, 5);
+
+        Construction shipyard10 = new Shipyard();
+        shipyard10.setLevel(10);
+
+        for (Construction construction : ConstructionsTools.getRequiredConstructions(PlanetList.planet1, shipyard10))
+        {
+            System.out.println(construction);
+        }*/
+
+        // new ConstructionsThread(10000).start();
         // new ResourcesThread(10000).start();
 
         // Test.test();

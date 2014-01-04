@@ -1,6 +1,7 @@
 package construction.vessel;
 
 import construction.Construction;
+import construction.ConstructionRefManager;
 import construction.NamingFactory;
 import construction.dependencytree.Node;
 import construction.dependencytree.NodeDictionary;
@@ -10,7 +11,7 @@ public class SmallCargo extends Construction
     @Override
     protected String getRef()
     {
-        return "202";
+        return ConstructionRefManager.SMALL_CARGO_REF;
     }
 
     @Override
@@ -23,6 +24,12 @@ public class SmallCargo extends Construction
     public Node getDependencyNode()
     {
         return NodeDictionary.getNode(NamingFactory.SmallCargoShip);
+    }
+
+    @Override
+    public String getName()
+    {
+        return NamingFactory.SmallCargoShip;
     }
 
 }

@@ -1,5 +1,8 @@
 package construction.resourcebuilding.mine;
 
+import construction.ConstructionRefManager;
+import construction.NamingFactory;
+
 public class MetalMine extends Mine
 {
     @Override
@@ -11,7 +14,13 @@ public class MetalMine extends Mine
     @Override
     protected String getRef()
     {
-        return "1";
+        return ConstructionRefManager.METAL_MINE_REF_REF;
+    }
+
+    @Override
+    public String getName()
+    {
+        return NamingFactory.MetalMine;
     }
 
 }

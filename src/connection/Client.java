@@ -295,6 +295,7 @@ public class Client
         }
         catch (Exception e)
         {
+            Logger.traceERROR(e);
             throw new RuntimeException(e);
         }
 
