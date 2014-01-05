@@ -2,13 +2,20 @@ package planet;
 
 import java.util.ArrayList;
 import java.util.List;
+import resource.Crystal;
+import resource.Deuterium;
+import resource.Energy;
+import resource.Metal;
+import resource.ResourcesList;
 import logger.Logger;
 import construction.Construction;
 import construction.ConstructionsList;
 
 public class Planet
 {
+    //init with setPlanetId()
     private ConstructionsList constructionsList;
+    private ResourcesList     resourcesList = new ResourcesList();
     private String            planetId;
 
     public Planet()
@@ -62,6 +69,26 @@ public class Planet
     {
         this.planetId = planetId;
         this.constructionsList = new ConstructionsList(planetId);
+    }
+
+    public Metal getMetal()
+    {
+        return resourcesList.getMetal();
+    }
+
+    public Crystal getCrystal()
+    {
+        return resourcesList.getCrystal();
+    }
+
+    public Deuterium getDeuterium()
+    {
+        return resourcesList.getDeuterium();
+    }
+
+    public Energy getEnergy()
+    {
+        return resourcesList.getEnergy();
     }
 
 }

@@ -36,6 +36,20 @@ public class PlanetList
     {
         return planetsList;
     }
+    
+    public static List<Planet> getExistingPlanets()
+    {
+        List<Planet> existingPlanets = new ArrayList<>();
+        for(Planet planet : getPlanetsList())
+        {
+            if(planet.getPlanetId() != null)
+            {
+                existingPlanets.add(planet);
+            }
+        }
+        return existingPlanets;
+    }
+    
 
     public static Planet getPlanetById(int id)
     {

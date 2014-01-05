@@ -2,12 +2,8 @@ package resource;
 
 import java.math.BigInteger;
 import logger.Logger;
-import resource.ResourcesList.Crystal;
-import resource.ResourcesList.Deuterium;
-import resource.ResourcesList.Energy;
-import resource.ResourcesList.Metal;
-import resource.ResourcesList.RawResource;
-import resource.ResourcesList.Resource;
+import planet.Planet;
+import planet.PlanetList;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import connection.ClientFactory;
 import construction.ConstructionsTools;
@@ -23,21 +19,24 @@ public class ResourcesTools
 
     public static void update()
     {
-        parse(ClientFactory.get().getFrontPage());
+        for(Planet planet : PlanetList.getExistingPlanets())
+        {
+            parse(planet, ClientFactory.get().getFrontPage(planet.getPlanetId()));            
+        }
     }
 
-    private static void parse(HtmlPage htmlPage)
+    private static void parse(Planet planet, HtmlPage htmlPage)
     {
         String xmlContent = htmlPage.asXml();
 
-        push(xmlContent, ResourcesList.getMetal());
-        push(xmlContent, ResourcesList.getCrystal());
-        push(xmlContent, ResourcesList.getDeuterium());
-        push(xmlContent, ResourcesList.getEnergy());
-        Logger.traceINFO(ResourcesList.getMetal().toString());
-        Logger.traceINFO(ResourcesList.getCrystal().toString());
-        Logger.traceINFO(ResourcesList.getDeuterium().toString());
-        Logger.traceINFO(ResourcesList.getEnergy().toString());
+        push(xmlContent, planet.getMetal());
+        push(xmlContent, planet.getCrystal());
+        push(xmlContent, planet.getDeuterium());
+        push(xmlContent, planet.getEnergy());
+        Logger.traceINFO(planet.getMetal().toString());
+        Logger.traceINFO(planet.getCrystal().toString());
+        Logger.traceINFO(planet.getDeuterium().toString());
+        Logger.traceINFO(planet.getEnergy().toString());
         Logger.traceINFO("-");
     }
 
