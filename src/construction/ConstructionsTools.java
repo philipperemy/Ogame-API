@@ -9,7 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import logger.Logger;
 import planet.Planet;
-import planet.PlanetList;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import connection.ClientFactory;
 import connection.RequestResponse;
@@ -19,29 +18,29 @@ import construction.dependencytree.RequirementFactory;
 
 public class ConstructionsTools
 {
-    public static void update()
+    public static void update(Planet planet)
     {
-        // TODO: change it
-        retrieveLevels(PlanetList.homeWorld);
+        retrieveLevels(planet);
     }
 
     public static RequestResponse sendBuildRequest(Planet planet, Construction construction)
     {
-        if (getRequiredConstructions(planet, construction).size() != 1)
+        //XXX: put it back when functional with other planets
+        /*if (getRequiredConstructions(planet, construction).size() != 1)
         {
             throw new RuntimeException("Error : Requirements are not met for construction : " + construction);
-        }
+        }*/
 
-        return sendBuildRequestForRef(construction.getRef());
+        return sendBuildRequestForRef(planet, construction.getRef());
     }
 
-    public static RequestResponse sendBuildRequestForRef(String ref)
+    public static RequestResponse sendBuildRequestForRef(Planet planet, String ref)
     {
-        Logger.traceINFO("Sending build request for : " + ref);
-        return ClientFactory.get().sendBuildRequest(ref);
+        Logger.traceINFO("Sending build request for : " + ref + " for planet : " + planet.getPlanetId());
+        return ClientFactory.get().sendBuildRequest(planet, ref);
     }
 
-    // TODO: do it
+
     public static Set<Construction> getRequiredConstructions(Planet planet, Construction target)
     {
         // Preserve the insertion order!
@@ -66,7 +65,7 @@ public class ConstructionsTools
     public static void retrieveLevels(Planet planet)
     {
         Logger.traceINFO("Retrieving constructionLevels for planet : " + planet);
-        retrieveLevelsFromResourcesBuildings(planet, ClientFactory.get().getResourcesPage());
+        retrieveLevelsFromResourcesBuildings(planet, ClientFactory.get().getResourcesPage(planet.getPlanetId()));
     }
 
     private static void retrieveLevelsFromResourcesBuildings(Planet planet, HtmlPage resourcesPage)
@@ -119,7 +118,7 @@ public class ConstructionsTools
         {
             throw new NumberFormatException("For input string [" + str + "]");
         }
-        
+
         String matchStr = matcher.group();
         matchStr = matchStr.replaceAll("\\.", "");
         return Integer.parseInt(matchStr);

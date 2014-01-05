@@ -1,6 +1,5 @@
 package resource;
 
-
 public class ResourcesList
 {
     private Metal     metal     = new Metal();

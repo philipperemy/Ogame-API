@@ -2,18 +2,18 @@ package planet;
 
 import java.util.ArrayList;
 import java.util.List;
+import logger.Logger;
 import resource.Crystal;
 import resource.Deuterium;
 import resource.Energy;
 import resource.Metal;
 import resource.ResourcesList;
-import logger.Logger;
 import construction.Construction;
 import construction.ConstructionsList;
 
 public class Planet
 {
-    //init with setPlanetId()
+    // init with setPlanetId()
     private ConstructionsList constructionsList;
     private ResourcesList     resourcesList = new ResourcesList();
     private String            planetId;

@@ -8,4 +8,3 @@ public class Deuterium extends RawResource
         return "Deuterium" + super.toString();
     }
 }
-

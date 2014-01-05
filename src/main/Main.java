@@ -3,14 +3,15 @@ package main;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
-import planet.PlanetList;
+import planet.Planet;
 import planet.PlanetTools;
-import resource.ResourcesThread;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import connection.ClientFactory;
-import construction.Construction;
-import construction.ConstructionsTools;
-import construction.facility.Shipyard;
+import construction.ConstructionsThread;
+import construction.resourcebuilding.mine.CrystalMine;
+import construction.resourcebuilding.mine.DeuteriumSynthesizer;
+import construction.resourcebuilding.mine.MetalMine;
+import construction.resourcebuilding.producer.SolarPlant;
 
 public class Main
 {
@@ -30,16 +31,29 @@ public class Main
 
         PlanetTools.update();
         
-        new ResourcesThread(10000).start();
-        /*ConstructionsTools.update();
-
-        Construction shipyard10 = new Shipyard();
-        shipyard10.setLevel(10);
-
-        for (Construction construction : ConstructionsTools.getRequiredConstructions(PlanetList.planet1, shipyard10))
+        Planet planet1 = new Planet();
+        planet1.setPlanetId("33701800");
+        
+        ConstructionsThread constructionsThread = new ConstructionsThread(planet1, 10000);
+        for (int i = 0; i < 5; i++)
         {
-            System.out.println(construction);
-        }*/
+            constructionsThread.pendingConstructions.add(new DeuteriumSynthesizer());
+            constructionsThread.pendingConstructions.add(new MetalMine());
+            constructionsThread.pendingConstructions.add(new SolarPlant());
+            constructionsThread.pendingConstructions.add(new CrystalMine());
+        }
+
+        constructionsThread.start();
+        
+        /*
+         * ConstructionsTools.update();
+         * Construction shipyard10 = new Shipyard();
+         * shipyard10.setLevel(10);
+         * for (Construction construction : ConstructionsTools.getRequiredConstructions(PlanetList.planet1, shipyard10))
+         * {
+         * System.out.println(construction);
+         * }
+         */
         /*
          * PlanetList.planet1.setConstructionLevel(NamingFactory.Shipyard, 5);
          * Construction shipyard10 = new Shipyard();

@@ -19,9 +19,9 @@ public class ResourcesTools
 
     public static void update()
     {
-        for(Planet planet : PlanetList.getExistingPlanets())
+        for (Planet planet : PlanetList.getExistingPlanets())
         {
-            parse(planet, ClientFactory.get().getFrontPage(planet.getPlanetId()));            
+            parse(planet, ClientFactory.get().getFrontPage(planet.getPlanetId()));
         }
     }
 
@@ -78,7 +78,7 @@ public class ResourcesTools
         contentTmp = contentTmp.substring(contentTmp.indexOf(currentProductionEnd) + currentProductionEnd.length());
 
         int consumption = ConstructionsTools.extractInt(contentTmp);
-        
+
         resource.setAvailable(new BigInteger(String.valueOf(available)));
         resource.setCurrentProduction(new BigInteger(String.valueOf(currentProduction)));
         resource.setConsumption(new BigInteger(String.valueOf(consumption)));
@@ -104,7 +104,7 @@ public class ResourcesTools
         contentTmp = contentTmp.substring(contentTmp.indexOf(currentProductionEnd) + currentProductionEnd.length());
 
         int denCapacity = ConstructionsTools.extractInt(contentTmp);
-        
+
         resource.setAvailable(new BigInteger(String.valueOf(available)));
         resource.setStorageCapacity(new BigInteger(String.valueOf(storageCapacity)));
         resource.setCurrentProduction(new BigInteger(String.valueOf(currentProduction)));

@@ -1,26 +1,39 @@
 package construction;
 
 import logger.Logger;
+import planet.Planet;
 import planet.PlanetList;
 import connection.RequestResponse;
 
 public class ConstructionsThread
 {
-    public static ConstructionQueue pendingConstructions     = new ConstructionQueue();
+    public ConstructionQueue pendingConstructions     = new ConstructionQueue();
 
-    private static final int        DEFAULT_POLLING_INTERVAL = 10000;
-    private int                     pollingInterval          = DEFAULT_POLLING_INTERVAL;
-    private boolean                 condition                = true;
-    private Thread                  thread                   = new Thread(new ConstructionTask());
+    private static final int DEFAULT_POLLING_INTERVAL = 10000;
+    private Planet           planet                   = PlanetList.homeWorld;
+    private int              pollingInterval          = DEFAULT_POLLING_INTERVAL;
+    private boolean          condition                = true;
+    private Thread           thread                   = new Thread(new ConstructionTask());
 
     public ConstructionsThread()
     {
 
     }
 
+    public ConstructionsThread(Planet planet)
+    {
+        this.planet = planet;
+    }
+
     public ConstructionsThread(int pollingInterval)
     {
         this.pollingInterval = pollingInterval;
+    }
+
+    public ConstructionsThread(Planet planet, int pollingInterval)
+    {
+        this.pollingInterval = pollingInterval;
+        this.planet = planet;
     }
 
     private class ConstructionTask implements Runnable
@@ -29,8 +42,7 @@ public class ConstructionsThread
         @Override
         public void run()
         {
-
-            ConstructionsTools.update();
+            ConstructionsTools.update(planet);
 
             while (condition)
             {
@@ -41,8 +53,7 @@ public class ConstructionsThread
 
                     if (construction != null)
                     {
-                        // TODO: change it
-                        RequestResponse response = ConstructionsTools.sendBuildRequest(PlanetList.homeWorld, construction);
+                        RequestResponse response = ConstructionsTools.sendBuildRequest(planet, construction);
 
                         if (response == RequestResponse.QUEUE_IS_FULL)
                         {
@@ -96,5 +107,15 @@ public class ConstructionsThread
     public void stop()
     {
         condition = false;
+    }
+
+    public Planet getPlanet()
+    {
+        return planet;
+    }
+
+    public void setPlanet(Planet planet)
+    {
+        this.planet = planet;
     }
 }

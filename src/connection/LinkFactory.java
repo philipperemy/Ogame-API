@@ -20,12 +20,12 @@ public class LinkFactory
     {
         return URL_PREFIX;
     }
-    
+
     public String getFrontPageLink(String planetId)
     {
         return URL_PREFIX + "?cp=" + planetId;
     }
-    
+
     public String changeCurrentPlanet(String nextPlanetId)
     {
         return getFrontPageLink(nextPlanetId);

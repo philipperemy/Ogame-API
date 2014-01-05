@@ -21,7 +21,7 @@ public class PlanetList
     static
     {
         planetsList.add(homeWorld);
-        
+
         planetsList.add(colony1);
         planetsList.add(colony2);
         planetsList.add(colony3);
@@ -36,20 +36,19 @@ public class PlanetList
     {
         return planetsList;
     }
-    
+
     public static List<Planet> getExistingPlanets()
     {
         List<Planet> existingPlanets = new ArrayList<>();
-        for(Planet planet : getPlanetsList())
+        for (Planet planet : getPlanetsList())
         {
-            if(planet.getPlanetId() != null)
+            if (planet.getPlanetId() != null)
             {
                 existingPlanets.add(planet);
             }
         }
         return existingPlanets;
     }
-    
 
     public static Planet getPlanetById(int id)
     {

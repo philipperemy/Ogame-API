@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import planet.Planet;
 import logger.Logger;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.HttpMethod;
@@ -58,7 +59,7 @@ public class Client
     {
         return getGenericPage(linkFactory.getResourcesPageLink());
     }
-    
+
     public synchronized HtmlPage getResourcesPage(String planetId)
     {
         changePlanet(planetId);
@@ -70,7 +71,7 @@ public class Client
         String frontPage = linkFactory.getFrontPageLink();
         return getGenericPage(frontPage);
     }
-    
+
     public synchronized HtmlPage getFrontPage(String planetId)
     {
         changePlanet(planetId);
@@ -181,7 +182,8 @@ public class Client
             }
         }
 
-        return RequestResponse.UNKNOWN_ERROR;
+        //TODO: For commander account, little bit different. Put it back
+        return RequestResponse.REQUEST_SENT;
     }
 
     private WebClient getOgameClient(String _username, String _password)
@@ -239,10 +241,16 @@ public class Client
 
         return client;
     }
-    
+
     private void changePlanet(String nextPlanetId)
     {
         getGenericPage(linkFactory.changeCurrentPlanet(nextPlanetId));
+    }
+
+    public RequestResponse sendBuildRequest(Planet planet, String ref)
+    {
+        changePlanet(planet.getPlanetId());
+        return sendBuildRequest(ref);
     }
 
 }

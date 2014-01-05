@@ -1,6 +1,5 @@
 package resource;
 
-
 public class Metal extends RawResource
 {
     @Override
@@ -10,4 +9,3 @@ public class Metal extends RawResource
     }
 
 }
-

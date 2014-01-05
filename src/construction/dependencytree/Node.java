@@ -6,7 +6,6 @@ import java.util.List;
 public class Node
 {
     // Only level and name
-    // TODO: pb with fighters and all those things. Tho, without level should be ok
     @Override
     public int hashCode()
     {
