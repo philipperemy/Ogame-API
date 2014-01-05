@@ -11,16 +11,21 @@ public class Planet
     private ConstructionsList constructionsList;
     private String            planetId;
 
+    public Planet()
+    {
+
+    }
+
     public Planet(String planetId)
     {
-        this.planetId = planetId;
-        constructionsList = new ConstructionsList(planetId);
+        // Init construction list as well
+        this.setPlanetId(planetId);
     }
 
     public void setConstructionLevel(String constructionName, int level)
     {
         constructionsList.update(constructionName, level);
-        Logger.traceINFO("Updated " + constructionName + ", level 0 -> " + level + " for planet " + planetId);
+        Logger.traceINFO("Updated " + constructionName + ", level 0 -> " + level + " for planet " + getPlanetId());
     }
 
     public ConstructionsList getConstructions()
@@ -31,7 +36,7 @@ public class Planet
     @Override
     public String toString()
     {
-        return planetId;
+        return getPlanetId();
     }
 
     public List<Construction> getConstructionsBuilt()
@@ -46,6 +51,17 @@ public class Planet
             }
         }
         return builtConstructions;
+    }
+
+    public String getPlanetId()
+    {
+        return planetId;
+    }
+
+    public void setPlanetId(String planetId)
+    {
+        this.planetId = planetId;
+        this.constructionsList = new ConstructionsList(planetId);
     }
 
 }

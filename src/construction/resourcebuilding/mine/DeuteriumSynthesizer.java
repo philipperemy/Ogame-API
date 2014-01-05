@@ -20,7 +20,6 @@ public class DeuteriumSynthesizer extends Mine
         return ConstructionRefManager.DEUTERIUM_SYNTHETISER_REF;
     }
 
-
     @Override
     public Node getDependencyNode()
     {

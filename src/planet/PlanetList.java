@@ -1,18 +1,44 @@
 package planet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PlanetList
 {
-    public static Planet planet1 = new Planet("1");
+    private static List<Planet> planetsList = new ArrayList<>();
 
-    public static Planet planet2 = new Planet("2");
+    public static Planet        homeWorld   = new Planet();
 
-    public static Planet planet3 = new Planet("3");
+    public static Planet        colony1     = new Planet();
+    public static Planet        colony2     = new Planet();
+    public static Planet        colony3     = new Planet();
+    public static Planet        colony4     = new Planet();
+    public static Planet        colony5     = new Planet();
+    public static Planet        colony6     = new Planet();
+    public static Planet        colony7     = new Planet();
+    public static Planet        colony8     = new Planet();
 
-    public static Planet planet4 = new Planet("4");
+    static
+    {
+        planetsList.add(homeWorld);
+        
+        planetsList.add(colony1);
+        planetsList.add(colony2);
+        planetsList.add(colony3);
+        planetsList.add(colony4);
+        planetsList.add(colony5);
+        planetsList.add(colony6);
+        planetsList.add(colony7);
+        planetsList.add(colony8);
+    }
 
-    public static Planet planet5 = new Planet("5");
+    public static List<Planet> getPlanetsList()
+    {
+        return planetsList;
+    }
 
-    public static Planet planet6 = new Planet("6");
-
-    public static Planet planet7 = new Planet("7");
+    public static Planet getPlanetById(int id)
+    {
+        return planetsList.get(id);
+    }
 }

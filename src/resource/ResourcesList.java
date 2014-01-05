@@ -4,6 +4,8 @@ import java.math.BigInteger;
 
 public class ResourcesList
 {
+    
+    //XXX: bug should be dependent of a planet and not the overall
     private static Metal     metal     = new Metal();
     private static Crystal   crystal   = new Crystal();
     private static Deuterium deuterium = new Deuterium();

@@ -42,7 +42,7 @@ public class ConstructionsThread
                     if (construction != null)
                     {
                         // TODO: change it
-                        RequestResponse response = ConstructionsTools.sendBuildRequest(PlanetList.planet1, construction);
+                        RequestResponse response = ConstructionsTools.sendBuildRequest(PlanetList.homeWorld, construction);
 
                         if (response == RequestResponse.QUEUE_IS_FULL)
                         {

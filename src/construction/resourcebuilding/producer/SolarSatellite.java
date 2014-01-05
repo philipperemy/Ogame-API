@@ -25,7 +25,7 @@ public class SolarSatellite extends EnergyProducer
     {
         return NamingFactory.SolarSatellite;
     }
-    
+
     @Override
     public Node getDependencyNode()
     {

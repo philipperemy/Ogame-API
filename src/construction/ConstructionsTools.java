@@ -16,14 +16,13 @@ import connection.RequestResponse;
 import construction.dependencytree.Node;
 import construction.dependencytree.NodeConstructionConvert;
 import construction.dependencytree.RequirementFactory;
-import construction.resourcebuilding.mine.DeuteriumSynthesizer;
 
 public class ConstructionsTools
 {
     public static void update()
     {
         // TODO: change it
-        retrieveLevels(PlanetList.planet1);
+        retrieveLevels(PlanetList.homeWorld);
     }
 
     public static RequestResponse sendBuildRequest(Planet planet, Construction construction)
@@ -45,7 +44,7 @@ public class ConstructionsTools
     // TODO: do it
     public static Set<Construction> getRequiredConstructions(Planet planet, Construction target)
     {
-        //Preserve the insertion order!
+        // Preserve the insertion order!
         Set<Construction> requiredConstructions = new LinkedHashSet<>();
         Set<Node> builtNodes = new HashSet<>();
         List<Construction> constructionsBuilt = planet.getConstructionsBuilt();
@@ -80,9 +79,9 @@ public class ConstructionsTools
             String currentRef = (String) nextRefAndLevelList.get(0);
             String constructionName = ConstructionRefManager.getNameByRef(currentRef);
             int level = (Integer) nextRefAndLevelList.get(1);
-            if(!currentRef.equals(ConstructionRefManager.SOLAR_SATELLITE_REF))
+            if (!currentRef.equals(ConstructionRefManager.SOLAR_SATELLITE_REF))
             {
-                planet.setConstructionLevel(constructionName, level);                
+                planet.setConstructionLevel(constructionName, level);
             }
         }
     }
@@ -113,14 +112,17 @@ public class ConstructionsTools
         return result;
     }
 
-    private static int extractInt(String str)
+    public static int extractInt(String str)
     {
-        Matcher matcher = Pattern.compile("\\d+").matcher(str);
+        Matcher matcher = Pattern.compile("-{0,1}\\d+\\.{0,1}\\d{0,}").matcher(str);
         if (!matcher.find())
         {
             throw new NumberFormatException("For input string [" + str + "]");
         }
-        return Integer.parseInt(matcher.group());
+        
+        String matchStr = matcher.group();
+        matchStr = matchStr.replaceAll("\\.", "");
+        return Integer.parseInt(matchStr);
     }
 
 }

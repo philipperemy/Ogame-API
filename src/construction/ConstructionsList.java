@@ -31,7 +31,7 @@ public class ConstructionsList
 {
     // Do not change this attribute name.
     private String        planetId;
-    
+
     public Mine           metalMineStruct       = new MetalMine();
     public Mine           crystalMineStruct     = new CrystalMine();
     public Mine           deuteriumMineStruct   = new DeuteriumSynthesizer();
@@ -95,7 +95,7 @@ public class ConstructionsList
                 case NamingFactory.FusionReactor:
                     initStruct(fusionReactorStruct, level);
                     break;
-                    
+
                 case NamingFactory.MetalStorage:
                     initStruct(metalStorageStruct, level);
                     break;
@@ -185,7 +185,7 @@ public class ConstructionsList
 
     public void initStruct(Construction struct, int level) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException
     {
-        if(level > 0)
+        if (level > 0)
         {
             Construction[] constructions = new Construction[level - 1];
             for (int i = 0; i < level - 1; i++)
@@ -195,7 +195,7 @@ public class ConstructionsList
                 Object object = ctor.newInstance();
                 constructions[i] = struct.getClass().cast(object);
             }
-            
+
             if (struct.getLevel() == null)
             {
                 Construction previousPtr = null;
@@ -203,18 +203,18 @@ public class ConstructionsList
                 {
                     Construction current = constructions[i];
                     current.setLevel(i + 1);
-                    
+
                     if (i != 0)
                     {
                         current.setPrevious(previousPtr);
                     }
-                    
+
                     previousPtr = current;
                 }
-                
+
                 struct.setLevel(level);
                 struct.setPrevious(previousPtr);
-            }            
+            }
         }
     }
 }

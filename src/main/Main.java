@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.MalformedURLException;
 import planet.PlanetList;
+import planet.PlanetTools;
+import resource.ResourcesThread;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import connection.ClientFactory;
 import construction.Construction;
@@ -26,16 +28,10 @@ public class Main
         System.setErr(new PrintStream("hello"));
         ClientFactory.init(121, "xfear238", "2296NABLT");
 
-        ConstructionsTools.update();
+        PlanetTools.update();
         
-        Construction shipyard10 = new Shipyard();
-        shipyard10.setLevel(10);
-        
-        for (Construction construction : ConstructionsTools.getRequiredConstructions(PlanetList.planet1, shipyard10))
-        {
-            System.out.println(construction);
-        }
-        /*PlanetList.planet1.setConstructionLevel(NamingFactory.Shipyard, 5);
+        new ResourcesThread(10000).start();
+        /*ConstructionsTools.update();
 
         Construction shipyard10 = new Shipyard();
         shipyard10.setLevel(10);
@@ -44,6 +40,15 @@ public class Main
         {
             System.out.println(construction);
         }*/
+        /*
+         * PlanetList.planet1.setConstructionLevel(NamingFactory.Shipyard, 5);
+         * Construction shipyard10 = new Shipyard();
+         * shipyard10.setLevel(10);
+         * for (Construction construction : ConstructionsTools.getRequiredConstructions(PlanetList.planet1, shipyard10))
+         * {
+         * System.out.println(construction);
+         * }
+         */
 
         // new ConstructionsThread(10000).start();
         // new ResourcesThread(10000).start();

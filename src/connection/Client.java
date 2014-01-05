@@ -58,35 +58,23 @@ public class Client
     {
         return getGenericPage(linkFactory.getResourcesPageLink());
     }
-
-    /*
-     * private String getToken()
-     * {
-     * HtmlPage resourcesPage = getResourcesPage();
-     * String resourcesPageAsXml = resourcesPage.asXml();
-     * final String TOKEN_STR = "name=\"token\" value=\"";
-     * if (resourcesPageAsXml.contains(TOKEN_STR))
-     * {
-     * int tokenBegIdx = resourcesPageAsXml.indexOf(TOKEN_STR);
-     * tokenBegIdx += TOKEN_STR.length();
-     * String afterToken = resourcesPageAsXml.substring(tokenBegIdx);
-     * int tokenEndIdx = afterToken.indexOf('\"');
-     * String token = afterToken.substring(0, tokenEndIdx);
-     * if (token.length() != 32)
-     * {
-     * throw new RuntimeException("Invalid token");
-     * }
-     * Logger.traceINFO("Found token : " + token);
-     * return token;
-     * }
-     * throw new RuntimeException("Cannot find token");
-     * }
-     */
+    
+    public synchronized HtmlPage getResourcesPage(String planetId)
+    {
+        changePlanet(planetId);
+        return getResourcesPage();
+    }
 
     public synchronized HtmlPage getFrontPage()
     {
         String frontPage = linkFactory.getFrontPageLink();
         return getGenericPage(frontPage);
+    }
+    
+    public synchronized HtmlPage getFrontPage(String planetId)
+    {
+        changePlanet(planetId);
+        return getFrontPage();
     }
 
     public synchronized HtmlPage getFacilitiesPage()
@@ -100,30 +88,6 @@ public class Client
         request.setRequestParameters(new ArrayList<NameValuePair>());
         request.getRequestParameters().add(new NameValuePair("type", ref));
         return getGenericPage(request);
-    }
-
-    public synchronized void sendBuildRequestSupply4()
-    {
-        HtmlPage resourcesPage = getResourcesPage();
-        String resourcesPageAsXml = resourcesPage.asXml();
-        final String SUPPLY_4 = "supply4";
-        if (resourcesPageAsXml.contains(SUPPLY_4))
-        {
-            String newStr = resourcesPageAsXml.substring(resourcesPageAsXml.indexOf(SUPPLY_4));
-            int beg = newStr.indexOf("sendBuildRequest('") + "sendBuildRequest('".length();
-
-            String newStr2 = newStr.substring(beg);
-            int end = newStr2.indexOf("',");
-
-            String httpRequestGet = newStr2.substring(0, end);
-            httpRequestGet = httpRequestGet.replaceAll("&amp;", "&");
-            Logger.traceINFO(httpRequestGet);
-            HtmlPage lol = getGenericPage(httpRequestGet);
-            if (lol.asXml().contains("7m"))
-            {
-                Logger.traceINFO("done");
-            }
-        }
     }
 
     public synchronized RequestResponse sendBuildRequest(String ref)
@@ -220,32 +184,6 @@ public class Client
         return RequestResponse.UNKNOWN_ERROR;
     }
 
-    /*
-     * public synchronized void sendBuildRequestSupply2()
-     * {
-     * HtmlPage resourcesPage = getResourcesPage();
-     * String resourcesPageAsXml = resourcesPage.asXml();
-     * final String SUPPLY_2 = "supply2";
-     * if (resourcesPageAsXml.contains(SUPPLY_2))
-     * {
-     * String newStr = resourcesPageAsXml.substring(resourcesPageAsXml.indexOf(SUPPLY_2));
-     * int beg = newStr.indexOf("sendBuildRequest('") + "sendBuildRequest('".length();
-     * String newStr2 = newStr.substring(beg);
-     * int end = newStr2.indexOf("',");
-     * String httpRequestGet = newStr2.substring(0, end);
-     * httpRequestGet = httpRequestGet.replaceAll("&amp;", "&");
-     * Logger.traceINFO(httpRequestGet);
-     * HtmlPage lol = getGenericPage(httpRequestGet);
-     * Pattern waitTime = Pattern.compile("[0-9]+m [0-9]+s");
-     * Matcher matcherWaitTime = waitTime.matcher(lol.asXml());
-     * if (matcherWaitTime.find())
-     * {
-     * Logger.traceINFO("done OKKKKKKKKKK");
-     * }
-     * }
-     * }
-     */
-
     private WebClient getOgameClient(String _username, String _password)
     {
         final WebClient client = new WebClient(BrowserVersion.FIREFOX_17);
@@ -300,6 +238,11 @@ public class Client
         }
 
         return client;
+    }
+    
+    private void changePlanet(String nextPlanetId)
+    {
+        getGenericPage(linkFactory.changeCurrentPlanet(nextPlanetId));
     }
 
 }

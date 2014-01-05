@@ -2,14 +2,24 @@ package resource;
 
 import java.math.BigInteger;
 import logger.Logger;
+import resource.ResourcesList.Crystal;
+import resource.ResourcesList.Deuterium;
 import resource.ResourcesList.Energy;
+import resource.ResourcesList.Metal;
 import resource.ResourcesList.RawResource;
 import resource.ResourcesList.Resource;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import connection.ClientFactory;
+import construction.ConstructionsTools;
 
 public class ResourcesTools
 {
+
+    final static String AVAILABLE_TAG          = "Available:";
+    final static String STORAGE_CAPACITY_TAG   = "Storage capacity:";
+    final static String CURRENT_PRODUCTION_TAG = "Current production:";
+    final static String DEN_CAPACITY_TAG       = "Den Capacity:";
+    final static String CONSUMPTION_TAG        = "Consumption:";
 
     public static void update()
     {
@@ -20,102 +30,86 @@ public class ResourcesTools
     {
         String xmlContent = htmlPage.asXml();
 
-        push(xmlContent, ResourcesList.getMetal(), 0);
-        push(xmlContent, ResourcesList.getCrystal(), 1);
-        push(xmlContent, ResourcesList.getDeuterium(), 2);
-        push(xmlContent, ResourcesList.getEnergy(), 3);
+        push(xmlContent, ResourcesList.getMetal());
+        push(xmlContent, ResourcesList.getCrystal());
+        push(xmlContent, ResourcesList.getDeuterium());
+        push(xmlContent, ResourcesList.getEnergy());
+        Logger.traceINFO(ResourcesList.getMetal().toString());
+        Logger.traceINFO(ResourcesList.getCrystal().toString());
+        Logger.traceINFO(ResourcesList.getDeuterium().toString());
+        Logger.traceINFO(ResourcesList.getEnergy().toString());
         Logger.traceINFO("-");
     }
 
-    private static void push(String content, Resource resource, int techId)
+    private static void push(String content, Resource resource)
     {
-        try
+        content = content.substring(content.indexOf("initAjaxResourcebox") + "initAjaxResourcebox".length());
+        if (resource instanceof RawResource)
         {
-            BigInteger available = BigInteger.ZERO;
-
-            if (resource instanceof RawResource)
+            if (resource instanceof Metal)
             {
-                available = parseResource(content, "Available", "<span class=\\\"middlemark\\\">", "<\\/span>", techId);
+                parse(content, (RawResource) resource, "Metal|<table class=\\\"resourceTooltip\\\">");
             }
-            else if (resource instanceof Energy)
+            else if (resource instanceof Crystal)
             {
-                available = parseResource(content, "Available", "<span class=\\\"\\\">", "<\\/span>", techId);
+                parse(content, (RawResource) resource, "Crystal|<table class=\\\"resourceTooltip\\\">");
             }
-            else
+            else if (resource instanceof Deuterium)
             {
-                throw new RuntimeException("Unknown resource");
+                parse(content, (RawResource) resource, "Deuterium|<table class=\\\"resourceTooltip\\\">");
             }
-
-            resource.setAvailable(available);
-
-            BigInteger currentProduction = parseResource(content, "Current production", "<span class=\\\"undermark\\\">", "<\\/span>", techId);
-            resource.setCurrentProduction(currentProduction);
-
-            if (resource instanceof RawResource)
-            {
-                BigInteger storageCapacity = parseResource(content, "Storage capacity", "<span class=\\\"middlemark\\\">", "<\\/span>", techId);
-                ((RawResource) resource).setStorageCapacity(storageCapacity);
-
-                BigInteger denCapacity = parseResource(content, "Den Capacity", "<span class=\\\"overermark\\\">", "<\\/span>", techId);
-                ((RawResource) resource).setDenCapacity(denCapacity);
-            }
-            else if (resource instanceof Energy)
-            {
-                BigInteger consumption = parseResource(content, "Consumption", "<span class=\\\"overmark\\\">", "<\\/span>", 0);
-                ((Energy) resource).setConsumption(consumption);
-            }
-            else
-            {
-                throw new RuntimeException("Unknown resource");
-            }
-
-            Logger.traceINFO(resource.toString());
         }
-        catch (Exception e)
+        else if (resource instanceof Energy)
         {
-            throw new RuntimeException(e);
+            parse(content, (Energy) resource, "Energy|<table class=\\\"resourceTooltip\\\">");
         }
     }
 
-    private static BigInteger parseResource(String content, String matchingStrStart, String matchingStrEnd)
+    private static void parse(String content, Energy resource, String startTag)
     {
-        int availableStartIndex = content.indexOf(matchingStrStart);
+        String contentTmp = content.substring(content.indexOf(startTag) + startTag.length());
+        int available = ConstructionsTools.extractInt(contentTmp);
 
-        if (availableStartIndex == -1 && matchingStrStart.contains("undermark"))
-        {
-            matchingStrStart = matchingStrStart.replaceAll("undermark", "overmark");
-            availableStartIndex = content.indexOf(matchingStrStart);
-        }
-        else if (availableStartIndex == -1 && matchingStrStart.contains("overmark"))
-        {
-            matchingStrStart = matchingStrStart.replaceAll("undermark", "undermark");
-            availableStartIndex = content.indexOf(matchingStrStart);
-        }
+        String availableEnd = String.valueOf(CURRENT_PRODUCTION_TAG);
+        contentTmp = contentTmp.substring(contentTmp.indexOf(availableEnd) + availableEnd.length());
 
-        availableStartIndex += matchingStrStart.length();
-        int availableEndIndex = content.substring(availableStartIndex).indexOf(matchingStrEnd);
-        availableEndIndex += availableStartIndex;
-        String metalAvailableStr = content.substring(availableStartIndex, availableEndIndex);
-        metalAvailableStr = metalAvailableStr.replace(".", "");
-        return new BigInteger(metalAvailableStr.trim());
+        int currentProduction = ConstructionsTools.extractInt(contentTmp);
+        String currentProductionEnd = String.valueOf(CONSUMPTION_TAG);
+
+        contentTmp = contentTmp.substring(contentTmp.indexOf(currentProductionEnd) + currentProductionEnd.length());
+
+        int consumption = ConstructionsTools.extractInt(contentTmp);
+        
+        resource.setAvailable(new BigInteger(String.valueOf(available)));
+        resource.setCurrentProduction(new BigInteger(String.valueOf(currentProduction)));
+        resource.setConsumption(new BigInteger(String.valueOf(consumption)));
+
     }
 
-    private static BigInteger parseResource(String content, String matchingStrStart, String matchingStrStart2, String matchingStrEnd)
+    private static void parse(String content, RawResource resource, String startTag)
     {
-        int cutStart = content.indexOf(matchingStrStart);
-        String contentTmp = content.substring(cutStart);
-        return parseResource(contentTmp, matchingStrStart2, matchingStrEnd);
+        String contentTmp = content.substring(content.indexOf(startTag) + startTag.length());
+        int available = ConstructionsTools.extractInt(contentTmp);
+
+        String availableEnd = String.valueOf(STORAGE_CAPACITY_TAG);
+        contentTmp = contentTmp.substring(contentTmp.indexOf(availableEnd) + availableEnd.length());
+
+        int storageCapacity = ConstructionsTools.extractInt(contentTmp);
+        String storageCapacityEnd = String.valueOf(CURRENT_PRODUCTION_TAG);
+
+        contentTmp = contentTmp.substring(contentTmp.indexOf(storageCapacityEnd) + storageCapacityEnd.length());
+
+        int currentProduction = ConstructionsTools.extractInt(contentTmp);
+        String currentProductionEnd = String.valueOf(DEN_CAPACITY_TAG);
+
+        contentTmp = contentTmp.substring(contentTmp.indexOf(currentProductionEnd) + currentProductionEnd.length());
+
+        int denCapacity = ConstructionsTools.extractInt(contentTmp);
+        
+        resource.setAvailable(new BigInteger(String.valueOf(available)));
+        resource.setStorageCapacity(new BigInteger(String.valueOf(storageCapacity)));
+        resource.setCurrentProduction(new BigInteger(String.valueOf(currentProduction)));
+        resource.setDenCapacity(new BigInteger(String.valueOf(denCapacity)));
     }
 
-    private static BigInteger parseResource(String content, String matchingStrStart, String matchingStrStart2, String matchingStrEnd, int startCount)
-    {
-        String contentTmp = content;
-        for (int i = 0; i < startCount; i++)
-        {
-            int cutStart = contentTmp.indexOf(matchingStrStart);
-            cutStart += matchingStrStart.length();
-            contentTmp = contentTmp.substring(cutStart);
-        }
-        return parseResource(contentTmp, matchingStrStart, matchingStrStart2, matchingStrEnd);
-    }
 }
