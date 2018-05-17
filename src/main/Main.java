@@ -27,7 +27,7 @@ public class Main
          * http://s121-en.ogame.gameforge.com/game/index.php?page=resources&modus=1&type=4&menge=1&token=d3c9d81ce171c86493ca1ac616b00377
          */
         System.setErr(new PrintStream("hello"));
-        ClientFactory.init(121, "xfear238", "2296NABLT");
+        ClientFactory.init(121, "<USER>", "<PASS>");
 
         PlanetTools.update();
         
