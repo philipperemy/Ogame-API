@@ -1,4 +1,4 @@
-Ogame-API
+Ogame Bot
 =========
 
-Ogame API
+No longer supported :(
